@@ -258,3 +258,124 @@ function averageWordLength(str) {
 }
 
 // console.log(averageWordLength("Dude, this is so awesome!"));
+function checkEquals(a, b) {
+  return (
+    // Array.isArray(a) &&
+    // Array.isArray(b) &&
+    a.every((val, index) => val === b[index])
+  );
+}
+
+// console.log(checkEquals([1, 2], [1, 2]));
+
+function rev(n) {
+  return Math.abs(n).toString().split("").reverse().join("");
+}
+
+// rev(69);
+
+function squareDigits(n) {
+  let arr = n.toString().split("");
+  let squaredArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    squaredArr.push(parseInt(Math.pow(arr[i], 2)));
+  }
+
+  console.log(parseInt(squaredArr.join("")));
+}
+
+// squareDigits(2483);
+
+function getBudgets(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i].budget;
+  }
+  console.log(sum);
+}
+
+// getBudgets([
+//   { name: "John", age: 21, budget: 29000 },
+//   { name: "Steve", age: 32, budget: 32000 },
+//   { name: "Martin", age: 16, budget: 1600 },
+// ]);
+
+function addition(num) {
+  return num + 1;
+}
+
+// console.log(addition(2));
+
+function marathonDistance(d) {
+  // let marathonLength = 0;
+
+  // for (let i = 0; i < d.length; i++) {
+  //   marathonLength += Math.abs(d[i]);
+  // }
+  // console.log(marathonLength);
+
+  return d.reduce((acc, num) => Math.abs(acc) + Math.abs(num), 0) === 25;
+}
+// console.log(marathonDistance([]));
+
+function indexMultiplier(arr) {
+  // let sum = 0;
+
+  // for (let i = 0; i < arr.length; i++) {
+  //   sum += arr[i] * i;
+  // }
+  // console.log(sum);
+  return arr.reduce((acc, num, i) => acc + num * i, 0);
+}
+
+// console.log(indexMultiplier([-3, 0, 8, -6]));
+
+const makePlusFunction = (fn, baseNum) => {
+  return fn + baseNum;
+};
+
+function addTen(num) {
+  return num;
+}
+
+// console.log(makePlusFunction(addTen(3), 10));
+// function makePlusFunction(baseNum) {
+//   return function (num) {
+//     return num + baseNum;
+//   };
+// }
+
+// let plusFive = makePlusFunction(5);
+
+// console.log(plusFive(5));
+
+function triArea(base, height) {
+  return (base * height) / 2;
+}
+
+// triArea(3, 2);
+
+function makePair(num1, num2) {
+  let n1 = num1.toString().split("");
+  let n2 = num2.toString().split("");
+}
+
+// makePair(1, 2);
+
+function capToFront(s) {
+  let arr = s.split("");
+  let upper = [];
+  let lower = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === arr[i].toUpperCase()) {
+      upper.push(arr[i]);
+    } else if (arr[i] === arr[i].toLowerCase()) {
+      lower.push(arr[i]);
+    }
+  }
+  console.log(upper.concat(lower).join(""));
+}
+
+// capToFront("hApPy");
