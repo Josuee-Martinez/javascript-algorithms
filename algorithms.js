@@ -379,3 +379,148 @@ function capToFront(s) {
 }
 
 // capToFront("hApPy");
+
+function iSqrt(n) {
+  if (n >= 0) {
+    // let newN = n;
+    let count = 0;
+    while (n >= 2) {
+      n = Math.sqrt(n);
+      count++;
+    }
+    console.log(n, count);
+  }
+}
+// console.log("invalid");
+
+// iSqrt(256);
+
+function totalVolume(...boxes) {
+  var sum = 0;
+  for (let i = 0; i < boxes.length; i++) {
+    sum += boxes[i][0] * boxes[i][1] * boxes[i][2];
+  }
+  console.log(sum);
+}
+// totalVolume([2, 2, 2], [2, 1, 1]);
+
+function evenlyDivisible(a, b, c) {
+  let sum = 0;
+
+  for (a; a <= b; a++) {
+    if (a % c === 0) {
+      sum += a;
+    }
+  }
+  console.log(sum);
+}
+
+// evenlyDivisible(1, 10, 3);
+
+function convert(hours, minutes) {
+  console.log(hours * 60 * 60 + minutes * 60);
+}
+
+// convert(1, 3);
+
+function reverseString(str) {
+  let newStr = "";
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    newStr += str[i];
+  }
+
+  return newStr;
+}
+
+// console.log(reverseString("hello"));
+
+function factorialize(num) {
+  let factorial = 1;
+
+  for (let i = 1; i <= num; i++) {
+    console.log(factorial, i);
+    factorial *= i;
+  }
+  // return factorial;
+}
+
+// console.log(factorialize(5));
+
+function findLongestWordLength(str) {
+  let arr = str.split(" ");
+  let longest = "";
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length > longest.length) {
+      longest = arr[i];
+    }
+  }
+  console.log(longest);
+}
+
+// findLongestWordLength("The quick brown fox jumped over the lazy dog");
+
+function largestOfFour(arr) {
+  let haha = [];
+  for (let i = 0; i < arr.length; i++) {
+    arr[i].sort((a, b) => {
+      return b - a;
+    });
+    haha.push(arr[i][0]);
+  }
+  console.log(haha);
+}
+
+// largestOfFour([
+//   [4, 5, 1, 3],
+//   [13, 27, 18, 26],
+//   [32, 35, 37, 39],
+//   [1000, 1001, 857, 1],
+// ]);
+
+function confirmEnding(str, target) {
+  console.log(str.substr(-target.length) === target);
+}
+
+// confirmEnding("Bastian", "tian");
+
+// function repeatStringNumTimes(str, num) {
+//   let repeatedStr = "";
+
+//   for (let i = 0; i < num; i++) {
+//     repeatedStr += str;
+//   }
+//   console.log(repeatedStr);
+// }
+
+// repeatStringNumTimes("abc", 3);
+
+function truncateString(str, num) {
+  console.log(str.slice(0, num) + "...");
+}
+
+// truncateString("A-tisket a-tasket A green and yellow basket", 8);
+
+function findElement(arr, func) {
+  let num = 0;
+
+  for (let i = 0; i <= arr.length; i++) {
+    if (func(arr[i])) {
+      num += arr[i];
+      break;
+    }
+  }
+
+  if (num <= 0) return undefined;
+  return num;
+}
+
+// findElement([1, 3, 5, 9], (num) => num % 2 === 0);
+
+function booWho(bool) {
+  // if (typeof bool === "boolean") return console.log(true);
+  // console.log(bool);
+  return typeof bool === "boolean";
+}
+
+// booWho([1, 2]);
