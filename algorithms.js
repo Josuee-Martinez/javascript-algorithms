@@ -524,3 +524,203 @@ function booWho(bool) {
 }
 
 // booWho([1, 2]);
+
+function titleCase(str) {
+  let arr = str.split(" ");
+
+  let result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    result.push(arr[i].charAt(0).toUpperCase() + arr[i].slice(1).toLowerCase());
+  }
+
+  console.log(result.join(","));
+}
+
+// titleCase("I'm a little tea pot");
+
+function frankenSplice(arr1, arr2, n) {
+  let result = [];
+
+  result.push(...arr2.slice(0, n));
+
+  result.push(...arr1);
+
+  result.push(...arr2.slice(n));
+
+  console.log(result);
+}
+
+// frankenSplice([1, 2, 3], [4, 5], 1);
+
+function bouncer(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i]) {
+      console.log(arr[i]);
+    }
+  }
+}
+
+// bouncer([7, "ate", "", false, 9]);
+
+function getIndexToIns(arr, num) {
+  arr.push(num);
+
+  arr.sort((a, b) => {
+    return a - b;
+  });
+
+  return arr.indexOf(num);
+}
+
+// console.log(getIndexToIns([40, 60], 50));
+
+function mutation(arr) {
+  let firstW = arr[0].toLowerCase();
+  let secondW = arr[1].toLowerCase();
+
+  for (let i = 0; i < secondW.length; i++) {
+    if (firstW.indexOf(secondW[i]) === -1) console.log(false);
+  }
+  console.log(true);
+}
+
+// mutation(["hello", "hey"]);
+
+function chunkArrayInGroups(arr, size) {
+  let groups = [];
+
+  while (arr.length > 0) {
+    groups.push(arr.splice(0, size));
+  }
+  console.log(groups);
+}
+
+// chunkArrayInGroups(["a", "b", "c", "d"], 2);
+
+function changeEnough(change, amountDue) {
+  let quarters = change[0] * 0.25;
+  let dimes = change[1] * 0.1;
+  let nickels = change[2] * 0.05;
+  let pennies = change[3] * 0.01;
+
+  let totalChange = quarters + dimes + nickels + pennies;
+
+  if (totalChange >= amountDue) return true;
+  return false;
+}
+
+// changeEnough([25, 20, 5, 0], 4.25);
+
+function firstLast(arr) {
+  let first = arr[0];
+  let last = arr[arr.length - 1];
+  // console.log(first);
+  let newArr = [first, last];
+  console.log(newArr);
+}
+
+// firstLast(["edabit", 13, null, false, true]);
+
+function fart(beans) {
+  let calculation = Math.pow(beans, 2) * 2 + beans * 5 + 3;
+
+  console.log(calculation);
+}
+
+// fart(6);
+
+function monthName(num) {
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  console.log(months[num - 1]);
+}
+
+// monthName(12);
+
+function testJackpot(result) {
+  let first = result[0];
+
+  let equalsArr = [];
+
+  for (let i = 0; i < result.length; i++) {
+    if (first === result[i]) {
+      equalsArr.push(result[i]);
+    }
+  }
+
+  return equalsArr.length === result.length;
+}
+
+// testJackpot(["abc", "abc", "absc", "abc"]);
+
+function findSmallestNum(arr) {
+  arr.sort((a, b) => {
+    return a - b;
+  });
+
+  console.log(arr);
+}
+
+// findSmallestNum([34, 15, 88, 2]);
+
+function reverseAndNot(i) {
+  let reversed = i.toString().split("").reverse();
+  let noReversed = i.toString().split("");
+  console.log(parseInt(reversed.concat(noReversed).join("")));
+}
+// reverseAndNot(123);
+
+function makeTitle(str) {
+  let strArr = str.split(" ");
+  let capitalizedWords = [];
+
+  for (let i = 0; i < strArr.length; i++) {
+    capitalizedWords.push(
+      strArr[i].charAt(0).toUpperCase() + strArr[i].slice(1)
+    );
+  }
+  console.log(capitalizedWords.join(" "));
+}
+
+// makeTitle("This is a title");
+
+function measureDepth(arr) {
+  console.log(JSON.stringify(arr).length / 2);
+}
+
+// measureDepth([[]]);
+
+function getMiddle(str) {
+  let middleChar = (str.length + 1) / 2;
+
+  if (str.length % 2 !== 0) {
+    console.log(str.charAt(middleChar - 1));
+  } else {
+    console.log(
+      str.charAt(Math.floor(middleChar) - 1) +
+        str.charAt(Math.floor(middleChar))
+    );
+  }
+}
+
+// getMiddle("a");
+
+function cubeSquareRoot(num) {
+  return Math.pow(Math.sqrt(num), 3);
+}
+
+// cubeSquareRoot(81);
