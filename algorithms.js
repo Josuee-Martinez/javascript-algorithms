@@ -906,3 +906,79 @@ function destroyer(arr, ...args) {
 }
 
 // destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3);
+
+function toArray(obj) {
+  console.log(Object.entries(obj));
+}
+
+// toArray({ a: 1, b: 2 });
+
+function additiveInverse(arr) {
+  let numbers = [];
+  for (let i = 0; i < arr.length; i++) {
+    numbers.push(-arr[i]);
+  }
+  console.log(numbers);
+}
+
+// additiveInverse([-5, -25, 35]);
+
+function numberSplit(n) {
+  // for (let i = 1; i <= n; i++) {
+  //   console.log(i);
+  // }
+  let arr = [];
+  let d = n / 2;
+
+  if (n < 0 && n % 2 !== 0) {
+    arr.push(Math.floor(d), Math.ceil(d));
+  } else if (n % 2 === 0) {
+    arr.push(d, d);
+  } else if (n % 2 !== 0) {
+    arr.push(Math.floor(d), Math.ceil(d));
+  }
+
+  console.log(arr);
+}
+
+// numberSplit(-9);
+
+function tetra(n) {
+  console.log((n * (n + 1) * (n + 2)) / 6);
+}
+
+// tetra(5);
+
+// Fix this incorrect code, so that all tests pass!
+let x = [1, 2, 3, 4, 5];
+function minusOne(arr) {
+  let slicedArr = arr.slice(0, arr.length - 1);
+  console.log(slicedArr);
+}
+
+// minusOne(x);
+
+function coneVolume(h, r) {
+  console.log(Number(Number((Math.PI * Math.pow(r, 2) * h) / 3).toFixed(2)));
+}
+
+// coneVolume(15, 6);
+
+function keysAndValues(obj) {
+  let arr = [];
+
+  arr.push(Object.keys(obj));
+  arr.push(Object.values(obj));
+
+  console.log(arr);
+}
+
+// keysAndValues({ a: 1, b: 2, c: 3 });
+
+function washHands(N, nM) {
+  let minutes = (N * 21 * nM * 30) / 60;
+  // console.log(minutes % 1);
+  return `${Math.floor(minutes)} minutes and ${(minutes % 1) * 60} seconds`;
+}
+// console.log(0.5 * 60);
+console.log(washHands(7, 9));
