@@ -724,3 +724,185 @@ function cubeSquareRoot(num) {
 }
 
 // cubeSquareRoot(81);
+
+function tempConversion(celsius) {
+  let temps = [];
+
+  if (celsius <= -273.16) return "Invalid";
+  let fahrenheit = celsius * (9 / 5) + 32;
+  let kelvin = celsius + 273.15;
+
+  temps.push(Number(fahrenheit.toFixed(2)), Number(kelvin.toFixed(2)));
+
+  console.log(temps);
+}
+
+// tempConversion(-273.16);
+
+function findBob(names) {
+  console.log(names.indexOf("Bob"));
+}
+
+// findBob(["Jimmy", "Layla", "Bob"]);
+
+function triangle(n) {
+  let initial = 0;
+
+  for (let i = 1; i <= n; i++) {
+    initial += i;
+  }
+  console.log(initial);
+}
+
+// triangle(1);
+
+function doubleFactorial(num) {
+  let fact = 1;
+
+  for (let i = 1; i <= num; i++) {
+    if (num % 2 === 0) {
+      if (i % 2 === 0) {
+        fact *= i;
+      }
+    } else {
+      if (i % 2 !== 0) {
+        fact *= i;
+      }
+    }
+  }
+
+  console.log(fact);
+}
+
+// doubleFactorial(0);
+
+function isSastry(number) {
+  // if (Number.isInteger(Math.sqrt(number))) {
+  //   console.log("haha");
+  // }
+  // let sum = number.toString() + String(number + 1);
+  // console.log(sum);
+  console.log(
+    Number.isInteger(Math.sqrt(number.toString() + String(number + 1)))
+  );
+}
+
+// isSastry(106755);
+
+function multiplyNums(nums) {
+  let numsArr = nums.split(", ");
+  let product = 1;
+
+  for (let i = 0; i < numsArr.length; i++) {
+    product *= parseInt(numsArr[i]);
+  }
+
+  console.log(product);
+}
+
+// multiplyNums("2, 3");
+
+function reverseArr(num) {
+  let strNum = num.toString().split("").reverse().join("");
+  let numArr = [];
+
+  for (let i = 0; i < strNum.length; i++) {
+    numArr.push(parseInt(strNum[i]));
+  }
+  console.log(numArr);
+}
+
+// reverseArr(1485979);
+
+function countWords(str) {
+  console.log(str.split(" ").length);
+}
+
+// countWords("Just an example here move along");
+
+function mean(num) {
+  let numsArr = num.toString().split("");
+  let sum = 0;
+
+  for (let i = 0; i < numsArr.length; i++) {
+    sum += parseInt(numsArr[i]);
+  }
+  console.log(sum / numsArr.length);
+}
+
+// mean(666);
+
+function unlucky13(nums) {
+  let amendedArr = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (!Number.isInteger(nums[i] / 13)) {
+      amendedArr.push(nums[i]);
+    }
+  }
+  console.log(amendedArr);
+}
+
+// unlucky13([53, 182, 435, 591, 637]);
+
+function sumAll(arr) {
+  let first = arr[0];
+  let second = arr[1];
+
+  let result = 0;
+
+  if (first < second) {
+    for (let i = first; i <= second; i++) {
+      result += i;
+    }
+  } else {
+    for (let i = second; i <= first; i++) {
+      result += i;
+    }
+  }
+
+  console.log(result);
+}
+
+// sumAll([4, 1]);
+
+function diffArray(arr1, arr2) {
+  let newArr = [];
+
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr2.indexOf(arr1[i]) === -1) {
+      newArr.push(arr1[i]);
+    }
+  }
+
+  for (let j = 0; j < arr2.length; j++) {
+    if (arr1.indexOf(arr2[j]) === -1) {
+      newArr.push(arr2[j]);
+    }
+  }
+  console.log(newArr);
+}
+
+// diffArray(
+//   ["andesite", "grass", "dirt", "pink wool", "dead shrub"],
+//   ["diorite", "andesite", "grass", "dirt", "dead shrub"]
+// );
+
+function destroyer(arr, ...args) {
+  let sameVals = [];
+
+  let argums = [];
+
+  for (let arg of args) {
+    argums.push(arg);
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (argums.indexOf(arr[i]) === -1) {
+      sameVals.push(arr[i]);
+    }
+  }
+
+  console.log(sameVals);
+}
+
+// destroyer([1, 2, 3, 5, 1, 2, 3], 2, 3);
