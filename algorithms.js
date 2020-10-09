@@ -981,4 +981,83 @@ function washHands(N, nM) {
   return `${Math.floor(minutes)} minutes and ${(minutes % 1) * 60} seconds`;
 }
 // console.log(0.5 * 60);
-console.log(washHands(7, 9));
+// console.log(washHands(7, 9));
+
+function capMe(arr) {
+  let cappedNames = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    cappedNames.push(
+      arr[i].charAt(0).toUpperCase() + arr[i].slice(1).toLowerCase()
+    );
+  }
+  console.log(cappedNames);
+}
+
+// capMe(["mavis", "senaida", "letty"]);
+
+function difference(nums) {
+  nums.sort((a, b) => a - b);
+
+  return nums[nums.length - 1] - nums[0];
+}
+
+// difference([10, 15, 20, 2, 10, 6]);
+
+function repeat(item, times) {
+  let arr = [];
+
+  for (let i = 0; i < times; i++) {
+    arr.push(item);
+  }
+
+  console.log(arr);
+}
+
+// repeat("edabit", 3);
+
+function multiplyByLength(arr) {
+  let resultArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    resultArr.push(arr[i] * arr.length);
+  }
+
+  console.log(resultArr);
+}
+
+// multiplyByLength([2, 3, 1, 0]);
+
+function convert(deg) {
+  let strNums = [];
+
+  let arr = deg.split("°");
+
+  for (let i = 0; i < arr.length; i++) {
+    if (Number.isInteger(parseInt(arr[i]))) {
+      strNums.push(arr[i]);
+    }
+  }
+
+  let nums = parseInt(strNums.join(""));
+
+  if (deg.indexOf("C") > -1) {
+    return (
+      Math.round(nums * (9 / 5) + 32).toString() +
+      deg.slice(deg.length - 2, deg.length - 1) +
+      "F"
+    );
+  }
+
+  if (deg.indexOf("F") > -1) {
+    return (
+      Math.round((nums - 32) / 1.8).toString() +
+      deg.slice(deg.length - 2, deg.length - 1) +
+      "C"
+    );
+  }
+
+  return "Error";
+}
+
+// console.log(convert("-35°C"));
