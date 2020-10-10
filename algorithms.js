@@ -1060,4 +1060,45 @@ function convert(deg) {
   return "Error";
 }
 
-// console.log(convert("-35°C"));
+// console.log(convert("-35°C"))
+
+function mult(arr) {
+  let flattened = arr.flat();
+
+  for (let i = 0; i < flattened.length; i++) {
+    console.log(flattened[i]);
+  }
+}
+
+// mult([[123], [456], [789]]);
+function factorize(num) {
+  let factorsArr = [];
+
+  for (let i = 1; i <= num; i++) {
+    if (num % i === 0) {
+      factorsArr.push(i);
+    }
+  }
+
+  console.log(factorsArr);
+}
+
+// factorize(17);
+
+function findLargestNum(arr) {
+  console.log(arr.sort((a, b) => a - b)[arr.length - 1]);
+}
+
+// findLargestNum([4, 5, 1, 3]);
+
+function lastItem(input) {
+  console.log(input[input.length - 1]);
+}
+
+// lastItem("");
+
+function removeEmptyArrays(arr) {
+  console.log(arr.filter((x) => !Array.isArray(x)));
+}
+
+removeEmptyArrays([1, 2, [], 4]);
