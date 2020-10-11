@@ -1101,4 +1101,78 @@ function removeEmptyArrays(arr) {
   console.log(arr.filter((x) => !Array.isArray(x)));
 }
 
-removeEmptyArrays([1, 2, [], 4]);
+// removeEmptyArrays([1, 2, [], 4]);
+
+function sortIt(arr) {
+  console.log(arr.sort((a, b) => a - b));
+}
+
+// sortIt([[3], 4, [2], [5], 1, 6]);
+
+function reverse(str) {
+  let revOrder = str.split(" ").reverse();
+  let revArr = [];
+
+  for (let i = 0; i < revOrder.length; i++) {
+    // revArr.push(revOrder[i]);
+    revArr.push(revOrder[i].split("").reverse().join(""));
+  }
+
+  console.log(revArr.join(" "));
+}
+
+// reverse("Edabit is really helpful!");
+
+function nameShuffle(str) {
+  console.log(str.split(" ").reverse().join(" "));
+}
+
+// nameShuffle("Donald Trump");
+
+function isBetween(first, last, word) {
+  let arr = [first, last, word];
+
+  return arr.sort().indexOf(word) === 1;
+}
+// console.log(isBetween("monk", "monument", "monkey"));
+
+function checkPalindrome(str) {
+  let reversed = str.split("").reverse().join("");
+
+  return str === reversed;
+}
+// checkPalindrome("mom");
+
+function missingAngle(angle1, angle2) {
+  let thirdAngle = Math.abs(angle1 + angle2 - 180);
+
+  return thirdAngle > 90 ? "obtuse" : thirdAngle < 90 ? "acute" : "right";
+}
+// console.log(missingAngle(45, 45));
+function factorChain(arr) {
+  let factors = [];
+  let current = 1;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] % current === 0) {
+      current = arr[i];
+      factors.push(arr[i]);
+    }
+  }
+  console.log(factors.length === arr.length);
+}
+// factorChain([2, 4, 6, 7, 12]);
+
+function numberSyllables(word) {
+  console.log(word.split("-").length);
+}
+// numberSyllables("on-o-mat-o-poe-ia");
+
+function Go(num) {
+  let dashes = "";
+  for (let i = 0; i < num; i++) {
+    dashes += "-";
+  }
+  console.log(dashes);
+}
+Go(5);
