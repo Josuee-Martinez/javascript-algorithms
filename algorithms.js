@@ -1175,4 +1175,86 @@ function Go(num) {
   }
   console.log(dashes);
 }
-Go(5);
+// Go(5);
+
+function filterArray(arr) {
+  console.log(arr.filter((el) => typeof el === "number"));
+}
+// filterArray([1, 2, 3, "a", "b", 4]);
+
+function checkEnding(str1, str2) {
+  console.log(str1.substr(-str2.length) === str2);
+}
+// checkEnding("abc", "bcg");
+
+function getTotalPrice(groceries) {
+  let amount = 0;
+
+  for (let i = 0; i < groceries.length; i++) {
+    // console.log(groceries[i].quantity * groceries[i].price);
+    amount += groceries[i].quantity * groceries[i].price;
+  }
+  console.log(Number(amount.toFixed(1)));
+}
+
+// getTotalPrice([
+//   { product: "Chocolate", quantity: 1, price: 0.1 },
+//   { product: "Lollipop", quantity: 1, price: 0.2 },
+// ]);
+
+function reverseOdd(str) {
+  let resultingArr = [];
+  let strArr = str.split(" ");
+
+  for (let i = 0; i < strArr.length; i++) {
+    if (strArr[i].length % 2 !== 0) {
+      resultingArr.push(strArr[i].split("").reverse().join(""));
+    } else {
+      resultingArr.push(strArr[i]);
+    }
+  }
+  console.log(resultingArr.join(" "));
+}
+
+// reverseOdd("Make sure uoy only esrever sdrow of ddo length");
+
+function canCapture([yourRook, opponentsRook]) {
+  let myRow = yourRook[0];
+  let oppRow = opponentsRook[0];
+
+  let myCol = yourRook[1];
+  let oppCol = opponentsRook[1];
+
+  // if (myRow === oppRow || myCol === oppCol) {
+  //   console.log(true);
+  // } else {
+  //   console.log(false);
+  // }
+  return myRow === oppRow || myCol === oppCol;
+}
+
+// canCapture(["A1", "B2"]);\
+
+const getStudentsWithNamesAndTopNotes = (students) => {
+  let arr = [];
+
+  for (let i = 0; i < students.length; i++) {
+    if (students[i].notes.length === 0) {
+      arr.push({
+        name: students[i].name,
+        topNote: 0,
+      });
+    } else {
+      arr.push({
+        name: students[i].name,
+        topNote: students[i].notes.sort((a, b) => b - a)[0],
+      });
+    }
+  }
+  console.log(arr);
+};
+
+// getStudentsWithNamesAndTopNotes([
+//   { name: "John", notes: [3, 5, 4] },
+//   { name: "Josue", notes: [] },
+// ]);
