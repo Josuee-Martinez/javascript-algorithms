@@ -1258,3 +1258,126 @@ const getStudentsWithNamesAndTopNotes = (students) => {
 //   { name: "John", notes: [3, 5, 4] },
 //   { name: "Josue", notes: [] },
 // ]);
+
+function reverseWords(string) {
+  console.log(
+    // string.replace(/  +/g, " ").trim().plit(" ").reverse().join(" ")
+    string.split("  ").reverse().join("  ")
+  );
+}
+// reverseWords("hello   world!  ");
+
+function profit(info) {
+  console.log(
+    Math.round(
+      info.inventory * info.sellPrice - info.inventory * info.costPrice
+    )
+  );
+}
+// profit({
+//   costPrice: 2.77,
+//   sellPrice: 7.95,
+//   inventory: 8500,
+// });
+
+function objectToArray(obj) {
+  console.log(Object.entries(obj));
+}
+
+// objectToArray({
+//   D: 1,
+//   B: 2,
+//   C: 3,
+// });
+
+function edaBit(start, end) {
+  let result = [];
+
+  for (let i = start; i <= end; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      result.push("Edabit");
+    } else if (i % 3 === 0) {
+      result.push("Eda");
+    } else if (i % 5 === 0) {
+      result.push("Bit");
+    } else {
+      result.push(i);
+    }
+  }
+  console.log(result);
+}
+// edaBit(0, 10);
+
+function reverseCapitalize(str) {
+  return str.split("").reverse().join("").toUpperCase();
+}
+
+// console.log(reverseCapitalize("hellothere"));
+
+function dis(price, discount) {
+  let a = (price * discount) / 100;
+  let x = price - a;
+  console.log(Number((price - (price * discount) / 100).toFixed(2)));
+}
+// dis(593, 61);
+
+function flatten(arr) {
+  let arr2 = [];
+  for (let i = 0; i < arr.length; i++) {
+    arr2.push(arr[i]);
+  }
+  console.log(arr2);
+}
+
+// flatten([
+//   ["a", "b"],
+//   ["c", "d"],
+// ]);
+
+function linesAreParallel(l1, l2) {
+  if (l1[0] === l2[0] && l1[1] === l2[1] && l1[2] === l2[2]) {
+    console.log("same");
+  }
+
+  if (l1[0] / l1[1] === l2[0] / l2[1] && l1[2] !== l2[2]) {
+    console.log(true);
+  }
+}
+// linesAreParallel([2, 5, 0], [20, 50, 10]);
+
+// console.log(50 / 20);
+
+// m y2 - y1 / x2 - x1
+
+function paths(n) {
+  let res = 1;
+
+  for (let i = 1; i <= n; i++) {
+    res *= i;
+  }
+
+  console.log(res);
+}
+// paths(4);
+
+function addEnding(arr, ending) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    newArr.push(arr[i] + ending);
+  }
+  console.log(newArr);
+}
+// addEnding(["clever", "meek", "hurried", "nice"], "ly");
+
+function signYourName(obj) {
+  // write your code here
+  // don't use a return statement
+  Object.preventExtensions(obj);
+
+  // DON'T CHANGE OR REMOVE THE LINES BELOW
+  obj.yourSignature = "Whatever";
+  obj.spouseSignature = "Nice Try";
+  console.log(obj);
+}
+
+// signYourName({ yourSignature: "jjj" });
