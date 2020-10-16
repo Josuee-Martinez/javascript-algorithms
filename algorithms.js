@@ -1381,3 +1381,24 @@ function signYourName(obj) {
 }
 
 // signYourName({ yourSignature: "jjj" });
+
+function boxSeq(step) {
+  let total = 0;
+
+  for (let i = 1; i <= step; i++) {
+    if (i % 2 !== 0) {
+      total += 3;
+    } else if (i % 2 === 0) {
+      total += -1;
+    }
+  }
+  console.log(total);
+}
+// boxSeq(6);
+
+function diffMaxMin(arr) {
+  let max = Math.max(...arr);
+  let min = Math.min(...arr);
+  console.log(max - min);
+}
+// diffMaxMin([10, 4, 1, 4, -10, -50, 32, 21]);
