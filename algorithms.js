@@ -1402,3 +1402,107 @@ function diffMaxMin(arr) {
   console.log(max - min);
 }
 // diffMaxMin([10, 4, 1, 4, -10, -50, 32, 21]);
+
+function isPotentialFriend(set1, set2) {
+  let biggestArr;
+
+  let commonInterests = [];
+
+  if (set1.length >= set2.length) {
+    biggestArr = set1;
+  } else if (set1.length < set2.length) {
+    biggestArr = set2;
+  }
+
+  for (let i = 0; i < biggestArr.length; i++) {
+    if (set1.includes(set2[i])) {
+      commonInterests.push(set2[i]);
+    }
+  }
+
+  console.log(
+    commonInterests.length >= 2 || biggestArr.length === commonInterests.length
+  );
+}
+
+// isPotentialFriend(
+//   ["sports", "music", "chess"],
+//   ["coding", "music", "netflix", "chess"]
+// );
+
+function insertWhitespace(s) {
+  let camel = s.replace(/([a-z])([A-Z])/g, "$1 $2");
+  console.log(camel);
+}
+// insertWhitespace("SheWalksToTheBeach");
+
+function isFourLetters(arr) {
+  let containerArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length === 4) {
+      containerArr.push(arr[i]);
+    }
+  }
+
+  return containerArr;
+}
+// isFourLetters(["Tomato", "Potato", "Pair"]);
+
+function sortByLastName(books) {
+  let revAuthor = [];
+
+  let finalArr = [];
+
+  for (let i = 0; i < books.length; i++) {
+    books[i].author = books[i].author.split(" ").reverse().join(" ");
+    revAuthor.push(books[i]);
+  }
+
+  let sorted = revAuthor.sort((a, b) => {
+    if (a.author > b.author) return 1;
+    if (a.author < b.author) return -1;
+    if ((a.author = b.author)) return 0;
+  });
+
+  for (let j = 0; j < sorted.length; j++) {
+    sorted[j].author = sorted[j].author.split(" ").reverse().join(" ");
+    finalArr.push(sorted[j]);
+  }
+
+  console.log(finalArr);
+}
+
+// sortByLastName([
+//   { name: "Harry Potter", rating: 9, author: "Joanne Rowling" },
+//   { name: "Warcross", rating: 7, author: "Marie Lu" },
+//   { name: "The Hunger Games", rating: 10, author: "Suzanne Collins" },
+// ]);
+
+function myReplace(str, before, after) {
+  let modified = "";
+
+  if (str.indexOf(before) > -1) {
+    if (
+      str.charAt(str.indexOf(before)) ===
+      str.charAt(str.indexOf(before)).toUpperCase()
+    ) {
+      modified = str.replace(
+        before,
+        after.charAt(0).toUpperCase() + after.slice(1)
+      );
+    } else if (
+      str.charAt(str.indexOf(before)) ===
+      str.charAt(str.indexOf(before)).toLowerCase()
+    ) {
+      modified = str.replace(
+        before,
+        after.charAt(0).toLowerCase() + after.slice(1)
+      );
+    }
+  }
+
+  console.log(modified);
+}
+
+myReplace("I think we should look up there", "up", "Down");
