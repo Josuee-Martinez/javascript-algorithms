@@ -1505,4 +1505,55 @@ function myReplace(str, before, after) {
   console.log(modified);
 }
 
-myReplace("I think we should look up there", "up", "Down");
+// myReplace("I think we should look up there", "up", "Down");
+
+function fearNotLetter(str) {
+  let alphabet = "abcdefghijklmnopqrstuvwxyz";
+
+  let start = alphabet.indexOf(str.charAt(str[0]));
+  let end = alphabet.indexOf(str.charAt(str.length - 1)) + 1;
+
+  let aSlice = alphabet.slice(start, end);
+
+  let missingLetters = "";
+
+  for (let i = 0; i < aSlice.length; i++) {
+    if (!str.includes(aSlice[i])) {
+      missingLetters = aSlice[i];
+    }
+  }
+
+  if (missingLetters === "") return undefined;
+
+  return missingLetters;
+}
+
+// fearNotLetter("abcdefghijklmnopqrstuvwxyz");
+
+function uniteUnique(arr) {
+  let numsArr = [];
+
+  for (let i = 0; i < arguments.length; i++) {
+    for (let j = 0; j < arguments[i].length; j++) {
+      numsArr.push(arguments[i][j]);
+    }
+  }
+
+  return [...new Set(numsArr)];
+}
+
+// uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+
+// let uniq = (numsArr) => [...new Set(numsArr)];
+
+// console.log(uniq([1, 1, 3, 3, 3, 5, 2, 6]));
+
+function addTogether() {
+  if (arguments.length === 1) {
+    console.log(arguments);
+  }
+  return false;
+}
+
+var sumTwoAnd = addTogether(2);
+sumTwoAnd(3);
