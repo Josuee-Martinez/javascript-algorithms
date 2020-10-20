@@ -1548,12 +1548,63 @@ function uniteUnique(arr) {
 
 // console.log(uniq([1, 1, 3, 3, 3, 5, 2, 6]));
 
-function addTogether() {
-  if (arguments.length === 1) {
-    console.log(arguments);
+function reverse(str) {
+  let final = "";
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    if (str[i] === str[i].toLowerCase()) {
+      final += str[i].toUpperCase();
+    } else if (str[i] === str[i].toUpperCase()) {
+      final += str[i].toLowerCase();
+    }
   }
-  return false;
+
+  console.log(final);
 }
 
-var sumTwoAnd = addTogether(2);
-sumTwoAnd(3);
+// reverse("Hello World");
+
+function findLongest(sentence) {
+  let stripped = sentence.replace(/[^A-Za-z0-9]/g, " ");
+  let arr = stripped.split(" ");
+  let longest = "";
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length > longest.length) {
+      longest = arr[i];
+    }
+  }
+
+  console.log(longest);
+}
+// findLongest("A thing of beauty is a joy forever.");
+
+function filterDigitLength(arr, num) {
+  let strArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].toString().length === num) {
+      strArr.push(arr[i]);
+    }
+  }
+  console.log(strArr);
+}
+// filterDigitLength([5, 6, 8, 9], 1);
+
+function sortByLength(str) {
+  // return str
+  //   .split(" ")
+  //   .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+  //   .sort((a, b) => a.length - b.length)
+  //   .join(" ");
+
+  let arr = str.split(" ");
+
+  let sorted = arr.sort((a, b) =>
+    a.toLowerCase().localeCompare(b.toLowerCase())
+  );
+
+  let joined = sorted.sort((a, b) => a.length - b.length).join(" ");
+
+  console.log(joined);
+}
+sortByLength("To be or not to be, that is the question.");
