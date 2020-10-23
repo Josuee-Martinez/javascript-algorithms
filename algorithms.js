@@ -1607,4 +1607,158 @@ function sortByLength(str) {
 
   console.log(joined);
 }
-sortByLength("To be or not to be, that is the question.");
+// sortByLength("To be or not to be, that is the question.");
+
+function dropElements(arr, func) {
+  for (let i = 0; i < arr.length; i++) {
+    if (func(arr[i])) {
+      return arr.slice(i);
+    }
+  }
+}
+
+// console.log(
+//   dropElements([1, 2, 3, 9, 2, 1, 0, 100], function (n) {
+//     return n > 2;
+//   })
+// );
+
+function sumFibs(num) {
+  let fibo = [1, 1];
+
+  let oddFibos = [];
+
+  while (fibo[fibo.length - 1] + fibo[fibo.length - 2] <= num) {
+    fibo.push(fibo[fibo.length - 1] + fibo[fibo.length - 2]);
+  }
+
+  for (let i = 0; i < fibo.length; i++) {
+    if (fibo[i] % 2 !== 0) {
+      oddFibos.push(fibo[i]);
+    }
+  }
+
+  // console.log(oddFibos);
+
+  let oddFibosSum = oddFibos.reduce((acc, num) => {
+    return acc + num;
+  });
+
+  console.log(oddFibosSum);
+}
+
+// sumFibs(75025);
+
+function sumMissingNumbers(arr) {
+  let missingSum = 0;
+
+  for (let i = Math.min(...arr); i <= Math.max(...arr); i++) {
+    if (arr.indexOf(i) === -1) {
+      missingSum += i;
+    }
+  }
+
+  console.log(missingSum);
+}
+
+// sumMissingNumbers([10, 20, 30, 40, 50, 60]);
+
+function fire(matrix, coordinates) {
+  let letter = coordinates[0];
+  let number = coordinates[1];
+  let A = matrix[0];
+  let B = matrix[1];
+  let C = matrix[2];
+  let D = matrix[3];
+  let E = matrix[4];
+
+  if (letter === "A") return A[number - 1] === "." ? "splash" : "BOOM";
+
+  if (letter === "B") return B[number - 1] === "." ? "splash" : "BOOM";
+
+  if (letter === "C") return C[number - 1] === "." ? "splash" : "BOOM";
+
+  if (letter === "D") return D[number - 1] === "." ? "splash" : "BOOM";
+
+  if (letter === "E") return E[number - 1] === "." ? "splash" : "BOOM";
+}
+
+// console.log(
+//   fire(
+//     [
+//       [".", "."],
+//       ["*", "*"],
+//     ],
+//     "B1"
+//   )
+// );
+
+function letsMeet(distance, va, vb) {
+  let hours = distance / (va + vb);
+  let rhours = Math.floor(hours);
+  let minutes = (hours - rhours) * 60;
+  let rminutes = Math.floor(minutes);
+  let seconds = (minutes - rminutes) * 60;
+  console.log(Math.round(seconds));
+
+  console.log(`${rhours}h ${rminutes}m ${Math.floor(seconds)}s`);
+}
+
+// letsMeet(250, 60, 80);
+
+function calculateScore(games) {
+  let benScore = 0;
+  let abiScore = 0;
+  let tie = 0;
+
+  let rock = "R";
+  let paper = "P";
+  let scissors = "S";
+
+  for (let i = 0; i < games.length; i++) {
+    if (games[i][0] === rock && games[i][1] === paper) {
+      benScore++;
+    }
+    if (games[i][0] === rock && games[i][1] === scissors) {
+      abiScore++;
+    }
+    if (games[i][0] === rock && games[i][1] === rock) {
+      tie++;
+    }
+    if (games[i][0] === paper && games[i][1] === rock) {
+      abiScore++;
+    }
+    if (games[i][0] === paper && games[i][1] === scissors) {
+      benScore++;
+    }
+    if (games[i][0] === paper && games[i][1] === paper) {
+      tie++;
+    }
+    if (games[i][0] === scissors && games[i][1] === paper) {
+      abiScore++;
+    }
+    if (games[i][0] === scissors && games[i][1] === rock) {
+      benScore++;
+    }
+    if (games[i][0] === scissors && games[i][1] === scissors) {
+      tie++;
+    }
+  }
+
+  console.log(abiScore, benScore);
+  if (benScore > abiScore) return "Benson";
+
+  if (benScore < abiScore) return "Abigail";
+
+  if (benScore === abiScore) return "Tie";
+}
+
+console.log(
+  calculateScore([
+    ["S", "S"],
+    ["S", "P"],
+    ["R", "S"],
+    ["S", "R"],
+    ["R", "R"],
+  ])
+);
