@@ -1753,12 +1753,96 @@ function calculateScore(games) {
   if (benScore === abiScore) return "Tie";
 }
 
-console.log(
-  calculateScore([
-    ["S", "S"],
-    ["S", "P"],
-    ["R", "S"],
-    ["S", "R"],
-    ["R", "R"],
-  ])
-);
+// console.log(
+//   calculateScore([
+//     ["S", "S"],
+//     ["S", "P"],
+//     ["R", "S"],
+//     ["S", "R"],
+//     ["R", "R"],
+//   ])
+// );
+
+function missingNum(arr) {
+  // let sorted = arr.sort((a, b) => {
+  //   return a - b;
+  // });
+
+  for (let i = 1; i <= 10; i++) {
+    if (arr.indexOf(i) === -1) {
+      console.log(i);
+    }
+  }
+}
+
+// missingNum([10, 5, 1, 2, 4, 6, 8, 3, 9]);
+
+function countdown(start) {
+  let countDownArr = [];
+  for (let i = start; i >= 0; i--) {
+    countDownArr.push(i);
+  }
+  console.log(countDownArr);
+}
+
+// countdown(5);
+
+function powerRanger(power, min, max) {
+  let arr = [];
+  for (let i = 0; i <= max; i++) {
+    if (Math.pow(i, power) >= min && Math.pow(i, power) <= max) {
+      arr.push(i);
+    }
+  }
+  console.log(arr.length);
+}
+
+// powerRanger(2, 49, 65);
+
+function camelCasing(str) {
+  // let string = "unEcEsSARilY_loNG_vArIablE_NaME";
+  let space = " ";
+  let underScore = "_";
+
+  while (str.indexOf(underScore) > -1) {
+    str = str.toLowerCase().replace(underScore, space);
+  }
+
+  let arr = str.split(" ");
+
+  let upperCaseArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    upperCaseArr.push(arr[i].charAt(0).toUpperCase() + arr[i].slice(1));
+  }
+
+  let strUpperCase = upperCaseArr.join("");
+
+  console.log(strUpperCase[0].toLowerCase() + strUpperCase.slice(1));
+}
+
+// camelCasing("Hello World");
+
+function isGoalScored(goal) {
+  for (let i = 0; i < goal.length; i++) {
+    if (goal[i].join("").includes(0)) {
+      return (
+        goal.indexOf(goal[i]) < 3 &&
+        goal[i].join("").indexOf("0") > 2 &&
+        goal[i].join("").indexOf("0") < 8
+      );
+    }
+  }
+}
+
+// console.log(
+//   isGoalScored([
+//     ["  #     #  "],
+//     ["  #     #  "],
+//     ["  #     # 0"],
+//     ["  #######  "],
+//     ["     #     "],
+//     ["     #     "],
+//     ["     #     "],
+//   ])
+// );
