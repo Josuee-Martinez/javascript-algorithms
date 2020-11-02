@@ -2035,3 +2035,166 @@ function sumOfMissingNums(arr) {
 }
 
 // sumOfMissingNums(["7", "3", "1", "9", "5"]);
+
+function sharedLetters(str1, str2) {
+   let strArr = str2.toLowerCase().split("");
+   let returnedStr = [];
+   let iKnowThisIsbad = [];
+
+   for (let i = 0; i < strArr.length; i++) {
+      if (str1.toLowerCase().includes(strArr[i])) {
+         returnedStr.push(strArr[i]);
+      }
+   }
+
+   let sorted = returnedStr.sort((a, b) => {
+      if (a > b) return 1;
+      if (b > a) return -1;
+      return 0;
+   });
+
+   let set = new Set(sorted);
+
+   for (let letter of set) {
+      iKnowThisIsbad.push(letter);
+   }
+
+   return iKnowThisIsbad.join("");
+}
+
+// console.log(sharedLetters("house", "home"));
+
+function firstRepeat(str) {
+   const result = [];
+   const strArr = str
+      .toLowerCase()
+      .split("")
+      .sort()
+      .join("")
+      .match(/(.)\1+/g);
+
+   if (strArr === null) {
+      return -1;
+   }
+
+   strArr.forEach((elem) => {
+      result.push(elem[0]);
+   });
+
+   return result.join("");
+}
+
+// console.log(firstRepeat("legolas"));
+
+function toCamelCase(str) {
+   let dash = "-";
+   let underScore = "_";
+   let space = " ";
+   let upperArr = [];
+
+   if (str === "") return "";
+
+   while (str.indexOf(dash) > -1) {
+      str = str.replace(dash, space);
+   }
+
+   while (str.indexOf(underScore) > -1) {
+      str = str.replace(underScore, space);
+   }
+
+   let strArr = str.split(" ");
+
+   for (let i = 0; i < strArr.length; i++) {
+      upperArr.push(strArr[i].charAt(0).toUpperCase() + strArr[i].slice(1));
+   }
+
+   if (str[0] === str[0].toUpperCase()) {
+      return upperArr.join("");
+   } else {
+      return upperArr.join("")[0].toLowerCase() + upperArr.join("").slice(1);
+   }
+}
+
+// console.log(toCamelCase("the-stealth-warrior"));
+
+function isPrime(num) {
+   if (num <= 1) return false;
+
+   for (let i = 2; i < num; i++) {
+      if (num % i === 0) return false;
+   }
+   return num > 1;
+}
+
+// console.log(isPrime(9));
+
+function filterPrimes(num) {
+   let primesArr = [];
+   for (let i = 0; i < num.length; i++) {
+      if (isPrime(num[i]) === true) {
+         primesArr.push(num[i]);
+      }
+   }
+   console.log(primesArr);
+}
+
+// filterPrimes([7, 9, 3, 9, 10, 11, 27]);
+
+function encrypt(word) {
+   let resArr = [];
+
+   let reversed = word.split("").reverse().join("");
+
+   for (let i = 0; i < reversed.length; i++) {
+      if (reversed[i] === "a") {
+         resArr.push("0");
+      } else if (reversed[i] === "e") {
+         resArr.push("1");
+      } else if (reversed[i] === "i") {
+         resArr.push("2");
+      } else if (reversed[i] === "o") {
+         resArr.push("2");
+      } else if (reversed[i] === "u") {
+         resArr.push("3");
+      } else {
+         resArr.push(reversed[i]);
+      }
+   }
+   console.log(resArr.join("") + "aca");
+}
+
+// encrypt("josue");
+
+function getStudentsWithNamesAndAvgNote(students) {
+   let arr = [];
+   for (let i = 0; i < students.length; i++) {
+      if (students[i].notes.length === 0) {
+         arr.push({ name: students[i].name, avgNote: 0 });
+      } else {
+         arr.push({
+            name: students[i].name,
+            avgNote:
+               students[i].notes.reduce((acc, num) => {
+                  return acc + num;
+               }) / students[i].notes.length,
+         });
+      }
+   }
+
+   console.log(arr);
+}
+
+// console.log(getStudentsWithNamesAndAvgNote([{ name: "John", notes: [] }]));
+
+function findOccurrences(str, char) {
+   let result = {};
+   str.split(" ").forEach((word) => {
+      result[word.toLowerCase()] = word
+         .toLowerCase()
+         .split("")
+         .filter((c) => c === char.toLowerCase()).length;
+   });
+   return result;
+}
+
+console.log(findOccurrences("Hellooo World", "o"));
