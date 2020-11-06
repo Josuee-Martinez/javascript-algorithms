@@ -2197,4 +2197,65 @@ function findOccurrences(str, char) {
    return result;
 }
 
-console.log(findOccurrences("Hellooo World", "o"));
+// console.log(findOccurrences("Hellooo World", "o"));
+
+function lcm(n1, n2) {
+   let n1Mults = [];
+   let n2Mults = [];
+   let final = [];
+
+   if (n1 > n2 || n1 === n2) {
+      for (let i = 1; i <= n1; i++) {
+         n1Mults.push(n1 * i);
+         n2Mults.push(n2 * i);
+      }
+
+      n1Mults.map((num) => {
+         if (n2Mults.indexOf(num) > -1) {
+            final.push(num);
+         }
+      });
+
+      return final[0];
+   } else if (n2 > n1) {
+      for (let i = 1; i <= n2; i++) {
+         n1Mults.push(n1 * i);
+         n2Mults.push(n2 * i);
+      }
+
+      n1Mults.map((num) => {
+         if (n2Mults.indexOf(num) > -1) {
+            final.push(num);
+         }
+      });
+
+      return final[0];
+   }
+}
+
+// console.log(lcm(9, 9));
+
+function digitCount(num) {
+   let arr = num.toString().split("");
+   let str = num.toString();
+
+   for (let i = 0; i < arr.length; i++) {
+      if (str.indexOf(arr[i]) > -1) {
+         console.log(arr[i]);
+      }
+   }
+}
+
+// digitCount(136116);
+
+function fibonacci(n) {
+   let fibos = [BigInt(1), BigInt(1)];
+
+   while (fibos.length < n) {
+      fibos.push(fibos[fibos.length - 1] + fibos[fibos.length - 2]);
+   }
+
+   return fibos[fibos.length - 1].toString();
+}
+
+console.log(fibonacci(80));
