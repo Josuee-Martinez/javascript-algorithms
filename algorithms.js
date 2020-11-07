@@ -2258,4 +2258,15 @@ function fibonacci(n) {
    return fibos[fibos.length - 1].toString();
 }
 
-console.log(fibonacci(80));
+// console.log(fibonacci(80));
+
+function firstRepeat(chars) {
+   for (i = 1; i < chars.length; i++) {
+      if (chars.slice(0, i).includes(chars[i])) {
+         return chars[i];
+      }
+   }
+   return "-1";
+}
+
+console.log(firstRepeat("Galadriel"));
