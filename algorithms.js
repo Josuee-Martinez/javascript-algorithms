@@ -2269,4 +2269,47 @@ function firstRepeat(chars) {
    return "-1";
 }
 
-console.log(firstRepeat("Galadriel"));
+// console.log(firstRepeat("Galadriel"));
+
+function numInStr(arr) {
+   let resultArr = [];
+
+   for (let i = 0; i < arr.length; i++) {
+      arr[i].split("").forEach((l, i, a) => {
+         if (parseInt(l)) {
+            resultArr.push(a.join(""));
+         }
+      });
+   }
+
+   return [...new Set(resultArr)];
+}
+
+// console.log(
+//    numInStr(["10xYZ", "xy2K77", "xy2K77", "xy2K77", "Z1K2W0", "Z1K2W0"])
+// );
+
+function pairs(arr) {
+   if (arr.length === 0) return arr;
+
+   let n = [];
+
+   while (arr.length > 0) {
+      n.push(arr.splice(0, 1).concat(arr.splice(arr.length - 1, 1)));
+   }
+
+   if (n[n.length - 1].length === 2) {
+      return n;
+   } else {
+      n[n.length - 1].push(n[n.length - 1][0]);
+      return n;
+   }
+}
+
+// console.log(pairs[(1, 2, 5, 6, 3, 3)]);
+function aad() {
+   if (!true) {
+      return "lll";
+   }
+   let n = o;
+}
