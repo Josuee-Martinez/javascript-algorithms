@@ -2393,4 +2393,92 @@ function charAtPos(r, s) {
 
    return result;
 }
-console.log(charAtPos("EDABIT", "odd")); //[4, 8]
+// console.log(charAtPos("EDABIT", "odd")); //[4, 8]
+
+function willFit(holds, cargo) {
+   let cargoSum = cargo.reduce((acc, num) => acc + num, 0);
+
+   let holdsSum = holds.reduce((acc, num) => {
+      if (num === "S") num = 50;
+      if (num === "M") num = 100;
+      if (num === "L") num = 200;
+
+      return acc + num;
+   }, 0);
+
+   return holdsSum >= cargoSum;
+}
+
+// willFit(["S", "S", "S", "S", "L"], [40, 50, 60, 70, 80, 90, 200]);
+
+function truncate(string, length) {
+   let resultArr = [];
+   let stringArr = string.split(" ");
+   let truncated = string.slice(0, length).split(" ");
+
+   for (let i = 0; i < truncated.length; i++) {
+      if (stringArr.indexOf(truncated[i]) > -1) {
+         resultArr.push(truncated[i]);
+      }
+   }
+
+   return resultArr.join(" ");
+}
+
+// truncate("Lorem ipsum dolor sit amet.", 11); //"Lorem ipsum"
+
+function charAppears(sentence, char) {
+   let result = [];
+   let arr = sentence.toLowerCase().split(" ");
+   char = char.toLowerCase();
+
+   for (let i = 0; i < arr.length; i++) {
+      let count = 0;
+
+      if (arr[i].indexOf(char) > -1) {
+         while (arr[i].indexOf(char) > -1) {
+            arr[i] = arr[i].replace(char, "");
+            count++;
+         }
+         result.push(count);
+      } else {
+         result.push(count);
+      }
+   }
+
+   console.log(result);
+}
+
+// charAppears("Peter Piper picked a peck of pickled peppers.", "P"); // [1, 2, 1, 0, 1, 0, 1, 3]
+
+function getPrices(arr) {
+   let prices = [];
+   for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].replace(
+         /[(`~!@#$%^&*()_|+\-=?;:'",<>\{\}\[\]\\\/) ()]/gi,
+         ""
+      );
+      prices.push(parseFloat(arr[i].replace(/[a-z ]/g, "")));
+   }
+   console.log(prices);
+}
+
+// getPrices([
+//    "ice cream ($5.99)",
+//    "banana ($0.20)",
+//    "sandwich ($8.50)",
+//    "soup ($1.99)",
+// ]);
+
+function minMissPos(arr) {
+   let sorted = arr.sort((a, b) => a - b);
+   let smallest = Math.min(...sorted);
+   let biggest = Math.max(...sorted);
+
+   for (let i = smallest; i <= biggest; i++) {
+      if (sorted.indexOf(i) === -1 && i > 0) return i;
+   }
+   return biggest + 1;
+}
+
+console.log(minMissPos([7, 6, 5, 4, 3, 2, 1]));
