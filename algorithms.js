@@ -2481,4 +2481,84 @@ function minMissPos(arr) {
    return biggest + 1;
 }
 
-console.log(minMissPos([7, 6, 5, 4, 3, 2, 1]));
+// console.log(minMissPos([7, 6, 5, 4, 3, 2, 1]));
+
+function champions(teams) {
+   for (let i = 0; i < teams.length; i++) {
+      teams[i].points =
+         3 * teams[i].wins + 0 * teams[i].loss + 1 * teams[i].draws;
+
+      teams[i].difference = teams[i].scored - teams[i].conceded;
+   }
+
+   let sortedByPoints = teams.sort((a, b) => {
+      return b.points - a.points;
+   });
+
+   if (sortedByPoints[0].points === sortedByPoints[1].points) {
+      return [sortedByPoints[0], sortedByPoints[1]].sort(
+         (a, b) => b.difference - a.difference
+      )[0].name;
+   }
+
+   return sortedByPoints[0].name;
+}
+
+// console.log(
+//    champions([
+//       {
+//          name: "Manchester City",
+//          wins: 30,
+//          loss: 6,
+//          draws: 2,
+//          scored: 102,
+//          conceded: 20,
+//       },
+//       {
+//          name: "Liverpool",
+//          wins: 24,
+//          loss: 6,
+//          draws: 8,
+//          scored: 118,
+//          conceded: 29,
+//       },
+//       {
+//          name: "Arsenal",
+//          wins: 28,
+//          loss: 2,
+//          draws: 8,
+//          scored: 87,
+//          conceded: 39,
+//       },
+//    ])
+// );
+
+function commonElements(arr1, arr2) {
+   let resultArr = [];
+
+   for (let i = 0; i < arr2.length; i++) {
+      if (arr1.indexOf(arr2[i]) > -1) {
+         resultArr.push(arr2[i]);
+      }
+   }
+
+   return resultArr;
+}
+
+// commonElements([1, 2, 2, 2, 3, 4, 5], [1, 2, 4, 5]); // [1, 2, 4, 5]
+
+function doubleSwap(str, c1, c2) {
+   let arr = [];
+   for (let i = 0; i < str.length; i++) {
+      if (str[i] === c1) {
+         arr.push(str[i].replace(str[i], c2));
+      } else if (str[i] === c2) {
+         arr.push(str[i].replace(str[i], c1));
+      } else {
+         arr.push(str[i]);
+      }
+   }
+   return arr.join("");
+}
+
+console.log(doubleSwap("aabbccc", "a", "b")); //"bbaaccc"
