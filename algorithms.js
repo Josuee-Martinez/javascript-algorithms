@@ -2651,4 +2651,50 @@ function isPositiveDominant(a) {
    return uniquePositives.length > uniqueNegatives.length;
 }
 
-console.log(isPositiveDominant([5, 0]));
+// console.log(isPositiveDominant([5, 0]));
+
+function primeCount(a, b) {
+   let primes = [];
+
+   for (let i = a; i <= b; i++) {
+      if (isPrime(i)) {
+         primes.push(i);
+      }
+   }
+
+   return primes.length;
+}
+
+function isPrime(num) {
+   if (num <= 1) return false;
+
+   for (let i = 2; i < num; i++) {
+      if (num % i === 0) return false;
+   }
+
+   return num > 1;
+}
+
+// console.log(primeCount(1, 10));
+
+function secret(num) {
+   let splitNum = num.toString().split("");
+   let first = parseInt(splitNum[0]);
+   let second = parseInt(splitNum[1]);
+
+   return Math.pow(first, second) - first * second;
+}
+
+// secret(52);
+
+function returnUnique(arr) {
+   // let filtered = arr.filter((num) => {
+   //    return arr.indexOf(num) === arr.lastIndexOf(num);
+   // });
+   // console.log(filtered);
+   for (let i = 0; i < arr.length; i++) {
+      console.log(arr.indexOf(arr[i]), arr.lastIndexOf(arr[i]));
+   }
+}
+
+returnUnique([1, 9, 8, 8, 7, 6, 1, 6]); //[9, 7]
