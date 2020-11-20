@@ -2561,4 +2561,94 @@ function doubleSwap(str, c1, c2) {
    return arr.join("");
 }
 
-console.log(doubleSwap("aabbccc", "a", "b")); //"bbaaccc"
+// console.log(doubleSwap("aabbccc", "a", "b")); //"bbaaccc"
+
+function sumPrimes(num) {
+   let primesArr = [];
+   for (let i = 0; i <= num; i++) {
+      if (isPrime(i)) {
+         primesArr.push(i);
+      }
+   }
+
+   return primesArr.reduce((acc, num) => acc + num, 0);
+}
+
+function isPrime(num) {
+   if (num <= 1) return false;
+
+   for (let i = 2; i < num; i++) {
+      if (num % i === 0) return false;
+   }
+   return num > 1;
+}
+
+// console.log(sumPrimes(7));
+
+function positiveSum(chars) {
+   let sum = 0;
+
+   let stripped = chars.replace(
+      /[(`~!@#$%^&*()_|+\=?;:'",<>\{\}\[\]\\\/) ()]/gi,
+      " "
+   );
+
+   let arr = stripped.split(" ");
+
+   for (let i = 0; i < arr.length; i++) {
+      if (parseInt(arr[i]) > 0) {
+         sum += parseInt(arr[i]);
+      }
+   }
+
+   return sum;
+}
+
+// positiveSum("-12#-33 13%14&-11");
+
+function findTheDifference(s, t) {
+   let sortedS = s.split("").sort();
+   let sortedT = t.split("").sort();
+
+   for (let i = 0; i < sorted.length; i++) {
+      if (sortedT[i] !== sortedS[i]) {
+         return sortedT[i];
+      }
+   }
+}
+
+// console.log(findTheDifference("ae", "aea"));
+
+function chosenWine(wines) {
+   if (wines.length === 0) return null;
+   if (wines.length === 1) return wines[0].name;
+   return wines.sort((a, b) => a.price - b.price)[1].name;
+}
+
+// console.log(
+//    chosenWine([
+//       { name: "Wine A", price: 8.99 },
+//       { name: "Wine 32", price: 13.99 },
+//       { name: "Wine 9", price: 10.99 },
+//    ])
+// );
+
+function isPositiveDominant(a) {
+   let positives = [];
+   let negatives = [];
+
+   for (let i = 0; i < a.length; i++) {
+      if (a[i] > 0) {
+         positives.push(a[i]);
+      } else if (a[i] < 0) {
+         negatives.push(a[i]);
+      }
+   }
+
+   let uniquePositives = [...new Set(positives)];
+   let uniqueNegatives = [...new Set(negatives)];
+
+   return uniquePositives.length > uniqueNegatives.length;
+}
+
+console.log(isPositiveDominant([5, 0]));
