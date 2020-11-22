@@ -2697,4 +2697,48 @@ function returnUnique(arr) {
    }
 }
 
-returnUnique([1, 9, 8, 8, 7, 6, 1, 6]); //[9, 7]
+// returnUnique([1, 9, 8, 8, 7, 6, 1, 6]); //[9, 7]
+
+function towerHanoi(discs) {
+   return Math.pow(2, discs) - 1;
+}
+
+// towerHanoi(5);
+
+function lookAndSay(n) {
+   let arr = n.toString().split("");
+   let numbArr = [];
+   let finalResult = "";
+
+   if (arr.length % 2 !== 0) return "invalid";
+
+   while (arr.length) {
+      numbArr.push(arr.splice(0, 2));
+   }
+
+   for (let i = 0; i < numbArr.length; i++) {
+      finalResult += numbArr[i][1].repeat(numbArr[i][0]);
+   }
+
+   return +finalResult;
+}
+// console.log(lookAndSay(2319)); //111222
+
+function alternatingCaps(s) {
+   // str = str.charAt(0).toUpperCase() + str.slice(1);
+   // let arr = str.split(" ");
+   // let final = [];
+
+   // for (let i = 0; i < arr.length; i++) {
+   //    for (let j = 0; j < arr[i].length; j = j + 2) {
+   //       console.log(arr[i][j]);
+   //    }
+   // }
+   // // console.log(arr);
+
+   return s.replace(/[a-z]/gi, (c) =>
+      c[`to${(s = !s) ? "Low" : "Upp"}erCase`]()
+   );
+}
+
+console.log(alternatingCaps("How are you")); //"HeLlO"
