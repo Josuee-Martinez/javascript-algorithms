@@ -2741,4 +2741,63 @@ function alternatingCaps(s) {
    );
 }
 
-console.log(alternatingCaps("How are you")); //"HeLlO"
+// console.log(alternatingCaps("How are you")); //"HeLlO"
+
+function isCorrectAliases(names, aliases) {
+   let correctAliases = [];
+
+   for (let i = 0; i < names.length; i++) {
+      let namesArr = names[i].split(" ");
+      let aliasesArr = aliases[i].split(" ");
+
+      if (
+         namesArr[0].startsWith(aliasesArr[0][0]) &&
+         namesArr[0].startsWith(aliasesArr[1][0])
+      ) {
+         correctAliases.push(true);
+      }
+   }
+   console.log(correctAliases.length === names.length);
+}
+
+// isCorrectAliases(
+//    ["Adrian M.", "Harriet S.", "Mandy T."],
+//    ["Amazing Artichoke", "Hopeful Hedgehog", "Marvelous Mouse"]
+// );
+
+function lovesMe(n) {
+   let petals = [];
+
+   for (let i = 0; i < n; i++) {
+      if (i % 2 === 0) {
+         petals.push("Loves me,");
+      } else {
+         petals.push("Loves me not,");
+      }
+   }
+
+   petals[petals.length - 1] = petals[petals.length - 1]
+      .split("")
+      .map((l) => l.toUpperCase())
+      .join("")
+      .replace(",", "");
+
+   return petals.join(" ");
+}
+
+// console.log(lovesMe(4));
+
+function arithmeticOperation(n) {
+   let arr = n.split(" ");
+   let first = arr[0];
+   let operation = arr[1];
+   let last = arr[2];
+
+   if (operation === "+") return parseInt(first) + parseInt(last);
+   if (operation === "-") return parseInt(first) - parseInt(last);
+   if (operation === "*") return parseInt(first) * parseInt(last);
+   if (operation === "/" && last === "0") return -1;
+   if (operation === "/") return parseInt(first) / parseInt(last);
+}
+
+// console.log(arithmeticOperation("12 / 1"));
