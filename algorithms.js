@@ -2801,3 +2801,91 @@ function arithmeticOperation(n) {
 }
 
 // console.log(arithmeticOperation("12 / 1"));
+
+function inclusiveArray(startNum, endNum) {
+   let arr = [];
+
+   if (startNum > endNum) return [startNum];
+
+   for (let i = startNum; i <= endNum; i++) {
+      arr.push(i);
+   }
+
+   return arr;
+}
+
+// console.log(inclusiveArray(10, 9));
+
+function additivePersistence(n) {
+   let arr = n.toString().split("");
+   let total = 0;
+
+   while (arr.length >= 2) {
+      arr = arr
+         .reduce((acc, num) => acc + parseInt(num), 0)
+         .toString()
+         .split("");
+
+      total++;
+   }
+
+   return total;
+}
+
+// console.log(additivePersistence(1679583));
+
+function multiplicativePersistence(n) {
+   let arr = n.toString().split("");
+   let total = 0;
+
+   while (arr.length >= 2) {
+      arr = arr
+         .reduce((acc, num) => acc * parseInt(num))
+         .toString()
+         .split("");
+
+      total++;
+   }
+
+   return total;
+}
+
+// multiplicativePersistence(4);
+
+function sumDigProd(...numbers) {
+   let sum = numbers
+      .reduce((acc, num) => acc + num, 0)
+      .toString()
+      .split("");
+
+   while (sum.length >= 2) {
+      sum = sum
+         .reduce((acc, num) => acc * parseInt(num))
+         .toString()
+         .split("");
+   }
+
+   return parseInt(sum.join());
+}
+
+// sumDigProd(1, 2, 3, 4, 5, 6);
+
+function isHappy(n) {
+   let arr = n.toString().split("");
+
+   while (
+      (arr.length > 1 && arr[0] !== 1) ||
+      (arr.length > 1 && arr[0] !== 4)
+   ) {
+      arr = arr
+         .reduce((acc, num) => acc + parseInt(Math.pow(num, 2)), 0)
+         .toString()
+         .split("");
+   }
+
+   if (arr[0] === "1") return true;
+   if (arr[0] === "4") return false;
+   return false;
+}
+
+// console.log(isHappy(3970));
