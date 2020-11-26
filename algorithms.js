@@ -2889,3 +2889,109 @@ function isHappy(n) {
 }
 
 // console.log(isHappy(3970));
+
+function rearrange(sentence) {
+   let myFinal = [];
+   let arr = sentence.split(" ");
+
+   for (let i = 0; i < arr.length; i++) {
+      let matches = arr[i].match(/\d+/g);
+      if (matches !== null) {
+         myFinal.push({
+            props: arr[i].replace(matches, ""),
+            rank: parseInt(...matches),
+         });
+      }
+   }
+
+   return myFinal
+      .sort((a, b) => a.rank - b.rank)
+      .map((obj) => obj.props)
+      .join(" ");
+}
+
+// rearrange("4of Fo1r pe6ople g3ood th5e the2"); //"For the good of the people"); //"This is a Test"
+
+function findFrequent(arr) {
+   if (arr.length === 1) return arr[0];
+   let final = [];
+
+   for (let i = 0; i < arr.length; i++) {
+      if (arr.indexOf(arr[i]) !== arr.lastIndexOf(arr[i])) {
+         final.push(arr[i]);
+      }
+   }
+
+   return final[0];
+}
+
+// console.log(findFrequent([3, 9, null, 9, null, null])); //3
+
+function addStrNums(num1, num2) {
+   console.log(BigInt(num1) + BigInt(num2) > Math.pow(2, 53));
+   if (num1 === "" && num2 === "") return "0";
+   if (num1 === "") return num2;
+   if (num2 === "") return num1;
+   if (isNaN(parseInt(num1)) || isNaN(parseInt(num2))) return "-1";
+
+   if (
+      parseInt(num1) + parseInt(num2) > Math.pow(2, 53) ||
+      parseInt(num1) + parseInt(num2) === "Infinity"
+   )
+      return BigInt(BigInt(num1) + BigInt(num2)).toString();
+
+   return (parseInt(num1) + parseInt(num2)).toString();
+}
+
+// console.log(addStrNums("0", "2")); //"9"
+
+function reverseLegoYoda(text) {
+   let arr = text.split(". ");
+
+   if (arr.length === 1) {
+      let str = arr
+         .toString()
+         .split(", ")
+         .reverse()
+         .join(" ")
+         .replace(".", "")
+         .toLowerCase();
+
+      return `${str.charAt(0).toUpperCase() + str.slice(1)}.`;
+   } else if (arr.length === 2) {
+      let str1 = arr[0]
+         .split(", ")
+         .reverse()
+         .join(" ")
+         .replace(".", "")
+         .toLowerCase();
+      let str2 = arr[1]
+         .split(", ")
+         .reverse()
+         .join(" ")
+         .replace(".", "")
+         .toLowerCase();
+
+      if (str2.indexOf("area") > -1) {
+         let replaced =
+            str2.charAt(str2.indexOf("area")).toUpperCase() +
+            str2.slice(str2.indexOf("area") + 1);
+
+         str2 = str2.replace("area 51", replaced);
+
+         return `${str1.charAt(0).toUpperCase() + str1.slice(1)}. ${
+            str2.charAt(0).toUpperCase() + str2.slice(1)
+         }.`;
+      } else {
+         return `${str1.charAt(0).toUpperCase() + str1.slice(1)}. ${
+            str2.charAt(0).toUpperCase() + str2.slice(1)
+         }.`;
+      }
+   }
+}
+
+// console.log(
+//    reverseLegoYoda(
+//       "An alien, I am. Holding me captive in Area 51, the government is."
+//    )
+// );
