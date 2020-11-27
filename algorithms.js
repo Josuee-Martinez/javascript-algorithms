@@ -2995,3 +2995,117 @@ function reverseLegoYoda(text) {
 //       "An alien, I am. Holding me captive in Area 51, the government is."
 //    )
 // );
+
+function sortContacts(names, sort) {
+   if (names === null || names === undefined || names.length === 0) return [];
+   if (names.length === 1) return names;
+
+   let nameArrObj = [];
+   let sortedFinal = [];
+
+   for (let i = 0; i < names.length; i++) {
+      names[i] = names[i].split(" ");
+      nameArrObj.push({ name: names[i][0], lastName: names[i][1] });
+   }
+
+   if (sort === "ASC") {
+      nameArrObj = nameArrObj.sort((a, b) => {
+         if (a.lastName > b.lastName) return 1;
+         if (b.lastName > a.lastName) return -1;
+         return 0;
+      });
+   } else {
+      nameArrObj = nameArrObj.sort((a, b) => {
+         if (a.lastName > b.lastName) return -1;
+         if (b.lastName > a.lastName) return 1;
+         return 0;
+      });
+   }
+
+   for (let i = 0; i < nameArrObj.length; i++) {
+      sortedFinal.push(Object.values(sorted[i]).join(" "));
+   }
+
+   return sortedFinal;
+}
+
+// console.log(
+//    sortContacts(["Aaron McDonal", "Carlos Natiel", "Josue Aries"], "ASC")
+// );
+
+function simonSays(arr) {
+   let result = 0;
+   for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].split(" ");
+      if (arr[i].indexOf("Simon") > -1) {
+         if (arr[i].indexOf("add") > -1) {
+            result += parseInt(arr[i][arr[i].length - 1]);
+         } else if (arr[i].indexOf("multiply") > -1) {
+            result *= parseInt(arr[i][arr[i].length - 1]);
+         } else if (arr[i].indexOf("subtract") > -1) {
+            result -= parseInt(arr[i][arr[i].length - 1]);
+         }
+      }
+   }
+   return result;
+}
+
+// console.log(
+//    simonSays([
+//       "Simeon says subtract 46",
+//       "Firstly, multiply by 3",
+//       "Simon says add 18",
+//    ])
+// );
+
+function squish(arr, d) {
+   if (arr.length === 0) return arr;
+   let result = [];
+   let myArr = [...arr];
+
+   if (d === "left") {
+      while (myArr.length > 1) {
+         let slice = myArr.slice(2);
+         slice.unshift(myArr[0] + myArr[1]);
+
+         result.push(slice);
+
+         myArr.splice(0, 2, myArr[0] + myArr[1]);
+      }
+   } else {
+      while (myArr.length > 1) {
+         let slice = myArr.slice(0, myArr.length - 2);
+         slice.push(myArr[myArr.length - 1] + myArr[myArr.length - 2]);
+         result.push(slice);
+         myArr.splice(
+            myArr.length - 2,
+            2,
+            myArr[myArr.length - 1] + myArr[myArr.length - 2]
+         );
+      }
+   }
+
+   result.unshift(arr);
+
+   return result;
+}
+
+// console.log(squish([], "left"));
+//[[1, 0, 2, -3], [1, 2, -3], [3, -3], [0]]
+
+function flat(arr) {
+   let final = [];
+   while (arr.length) {
+      let next = arr.pop();
+
+      if (Array.isArray(next)) {
+         arr.push(...next);
+      } else {
+         final.push(next);
+      }
+   }
+
+   console.log(final);
+}
+
+console.log(flat([1, 2, 3, [3, 3], [0, 3], 3, 3, 0, [[9]], [[[0, 3]]]]));
