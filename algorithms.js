@@ -3105,7 +3105,50 @@ function flat(arr) {
       }
    }
 
-   console.log(final);
+   console.log(final.reverse());
 }
 
-console.log(flat([1, 2, 3, [3, 3], [0, 3], 3, 3, 0, [[9]], [[[0, 3]]]]));
+// console.log(flat([1, 2, 3, [3, 3], [0, 3], 3, 3, 0, [[9]], [[[0, 3]]]]));
+
+function flattenArray(array) {
+   if (array === null || array === undefined || array.length === 0) return [];
+   let stack = [];
+
+   while (array.length) {
+      let next = array.pop();
+
+      if (Array.isArray(next)) {
+         array.push(...next);
+      } else if (typeof next === "function") {
+         stack.push(next());
+      } else {
+         stack.push(next);
+      }
+   }
+
+   return stack.reverse();
+}
+
+console.log(
+   flattenArray([
+      1,
+      "2",
+      [
+         3,
+         function () {
+            return 4;
+         },
+         ["five"],
+         "six",
+         true,
+         { prop: "val" },
+      ],
+   ])
+);
+//[1, "2", 3, 4, "five", "six", true, { prop: "val" }]
+
+function isOrdSub(smarr, bigarr) {
+   return bigarr.toString().indexOf(smarr.toString()) > -1;
+}
+
+console.log(isOrdSub([5, 3, 1], [5, 4, 3, 2, 1]));
