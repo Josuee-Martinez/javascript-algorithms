@@ -3129,26 +3129,137 @@ function flattenArray(array) {
    return stack.reverse();
 }
 
-console.log(
-   flattenArray([
-      1,
-      "2",
-      [
-         3,
-         function () {
-            return 4;
-         },
-         ["five"],
-         "six",
-         true,
-         { prop: "val" },
-      ],
-   ])
-);
+// console.log(
+//    flattenArray([
+//       1,
+//       "2",
+//       [
+//          3,
+//          function () {
+//             return 4;
+//          },
+//          ["five"],
+//          "six",
+//          true,
+//          { prop: "val" },
+//       ],
+//    ])
+// );
 //[1, "2", 3, 4, "five", "six", true, { prop: "val" }]
 
 function isOrdSub(smarr, bigarr) {
-   return bigarr.toString().indexOf(smarr.toString()) > -1;
+   // return bigarr.toString().indexOf(smarr.toString()) > -1;
 }
 
-console.log(isOrdSub([5, 3, 1], [5, 4, 3, 2, 1]));
+// console.log(isOrdSub([5, 3, 1], [5, 4, 3, 2, 1]));
+
+function sumOfSlices(arr) {
+   let sum = 0,
+      ret = [];
+   for (let i = 0; i < arr.length; i++) {
+      if (sum + arr[i] < 100) sum += arr[i];
+      else {
+         ret.push(sum);
+         sum = arr[i];
+      }
+   }
+   return ret.concat(sum);
+}
+
+// console.log(
+//    sumOfSlices([
+//       10,
+//       29,
+//       13,
+//       14,
+//       15,
+//       16,
+//       17,
+//       31,
+//       20,
+//       10,
+//       29,
+//       13,
+//       14,
+//       15,
+//       16,
+//       17,
+//       31,
+//       20,
+//       100,
+//    ])
+// );
+//[97, 78, 87, 68, 100]
+
+function alternateSort(arr) {
+   let final = [];
+   let nums = [];
+   let strs = [];
+
+   for (let i = 0; i < arr.length; i++) {
+      if (isNaN(parseInt(arr[i]))) {
+         strs.push(arr[i]);
+      } else {
+         nums.push(arr[i]);
+      }
+   }
+
+   let sortedNums = nums.sort((a, b) => a - b);
+   let sortedStrs = strs.sort();
+
+   for (let i = 0; i < sortedNums.length; i++) {
+      final.push(sortedNums[i], sortedStrs[i]);
+   }
+
+   return final;
+}
+
+// console.log(alternateSort(["X", 15, 12, 18, "Y", "Z"])); //[12, "X", 15, "Y", 18, "Z"]
+
+function mapLetters(str) {
+   let obj = {};
+   for (let i = 0; i < str.length; i++) {
+      if (!obj[str[i]]) {
+         obj[str[i]] = [i];
+      } else {
+         obj[str[i]].push(i);
+      }
+   }
+   return obj;
+}
+
+// console.log(mapLetters("imagining"));
+// {
+//    i: [0, 4, 6],
+//    m: [1],
+//    a: [2],
+//    g: [3, 8],
+//    n: [5, 7],
+// };
+
+function lengthen(s1, s2) {
+   let newS1 = [...s1].join("");
+   let newS2 = [...s2].join("");
+
+   if (s1.length > s2.length) {
+      while (newS2.length < newS1.length) {
+         newS2 = newS2 + s2;
+      }
+      let arr = newS2.split("");
+
+      arr.splice(-(newS2.length - newS1.length), newS2.length - newS1.length);
+
+      return arr.join("");
+   } else {
+      while (newS1.length < newS2.length) {
+         newS1 = newS1 + s1;
+      }
+      let arr = newS1.split("");
+
+      arr.splice(-(newS1.length - newS2.length), newS1.length - newS2.length);
+
+      return arr.join("");
+   }
+}
+
+// lengthen("clap", "skipping"); //"clapclap"
