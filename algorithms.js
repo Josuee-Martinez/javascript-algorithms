@@ -3262,4 +3262,79 @@ function lengthen(s1, s2) {
    }
 }
 
-// lengthen("clap", "skipping"); //"clapclap"
+// console.log(lengthen("clap", "skipping")); //"clapclap"
+
+function alternatePosNeg(arr) {
+   if (arr.some((num) => num === 0)) return false;
+
+   if (arr[0] > 0) {
+      for (let i = 0; i < arr.length; i = i + 2) {
+         if (arr[i] < 0) {
+            return false;
+         }
+      }
+
+      for (let i = 1; i < arr.length; i = i + 2) {
+         if (arr[i] > 0) {
+            return false;
+         }
+      }
+   } else {
+      for (let i = 0; i < arr.length; i = i + 2) {
+         if (arr[i] > 0) {
+            return false;
+         }
+      }
+
+      for (let i = 1; i < arr.length; i = i + 2) {
+         if (arr[i] < 0) {
+            return false;
+         }
+      }
+   }
+
+   return true;
+}
+
+// console.log(alternatePosNeg([4, 4, -2, 3, -6, 10])); //false
+
+function license(me, agents, others) {
+   let sortedNames = (others + " " + me).split(" ").sort();
+
+   return Math.abs((sortedNames.indexOf(me) + 1 - agents) * 20 + 20);
+}
+
+// license("Eric", 2, "Adam Caroline Rebecca Frank"); //40
+
+function factorSort(nums) {
+   let mainArr = [];
+   let finalResult = [];
+   for (let i = 0; i < nums.length; i++) {
+      let current = [];
+      for (let j = 0; j <= nums[i]; j++) {
+         if (nums[i] % j === 0) {
+            current.push({ [nums[i]]: j });
+         }
+      }
+      mainArr.push(current);
+   }
+
+   for (let i = 0; i < mainArr.length; i++) {
+      nums[i] = { number: nums[i], length: mainArr[i].length };
+   }
+
+   let sorted = nums.sort((a, b) => {
+      if (a.length === b.length) {
+         return b.number - a.number;
+      }
+      return b.length - a.length;
+   });
+
+   for (let i = 0; i < sorted.length; i++) {
+      finalResult.push(sorted[i].number);
+   }
+
+   return finalResult;
+}
+
+// factorSort([1, 2, 31, 4]); //[4, 31, 2, 1]
