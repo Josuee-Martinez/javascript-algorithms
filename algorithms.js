@@ -3338,3 +3338,49 @@ function factorSort(nums) {
 }
 
 // factorSort([1, 2, 31, 4]); //[4, 31, 2, 1]
+
+function bemirp(n) {
+   if (!isPrime(n)) {
+      return "C";
+   }
+
+   let reversed = parseInt(n.toString().split("").reverse().join(""));
+
+   if (reversed === n) {
+      return "P";
+   }
+
+   if (n.toString().indexOf("6") > -1) {
+      let flipped = n.toString();
+
+      while (flipped.indexOf("6") > -1) {
+         flipped = flipped.replace("6", "9");
+      }
+      if (isPrime(parseInt(flipped))) return "B";
+   }
+
+   if (n.toString().indexOf("9") > -1) {
+      let flipped = n.toString();
+
+      while (flipped.indexOf("9") > -1) {
+         flipped = flipped.replace("9", "6");
+      }
+      if (isPrime(parseInt(flipped))) return "B";
+   }
+
+   if (isPrime(reversed)) return "E";
+
+   if (isPrime(n)) return "P";
+}
+
+function isPrime(num) {
+   if (num <= 1) return false;
+
+   for (let i = 2; i < num; i++) {
+      if (num % i === 0) return false;
+   }
+
+   return num > 1;
+}
+
+// console.log(bemirp(10091)); //"B"
