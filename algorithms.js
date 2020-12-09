@@ -3445,4 +3445,19 @@ function doesBrickFit(a, b, c, w, h) {
    }
 }
 
-console.log(doesBrickFit(2, 2, 2, 1, 2)); //true
+// console.log(doesBrickFit(2, 2, 2, 1, 2)); //true
+
+function splitAndDelimit(str, num, del) {
+   let arr = str.split("");
+   let final = [];
+
+   while (arr.length) {
+      final.push(...arr.splice(0, num), del);
+   }
+
+   final.pop();
+
+   return final.join("");
+}
+
+// splitAndDelimit("bellow", 2, "&"); //"be&ll&ow"
