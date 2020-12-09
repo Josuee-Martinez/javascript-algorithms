@@ -3384,3 +3384,65 @@ function isPrime(num) {
 }
 
 // console.log(bemirp(10091)); //"B"
+
+function sumTwoSmallestNums(arr) {
+   let filtered = arr.filter((num) => num > 0).sort((a, b) => a - b);
+
+   return filtered[0] + filtered[1];
+}
+
+// console.log(sumTwoSmallestNums([2, 9, 6, -1])); //7
+
+function iccMinusFib(n) {
+   let fibonacciSum = [0, 1, 1];
+   let iccanobifSum = [0, 1, 1];
+
+   while (fibonacciSum.length < n) {
+      fibonacciSum.push(
+         fibonacciSum[fibonacciSum.length - 1] +
+            fibonacciSum[fibonacciSum.length - 2]
+      );
+   }
+
+   while (iccanobifSum.length < n) {
+      if (iccanobifSum.length > 7) {
+         iccanobifSum.push(
+            parseInt(
+               iccanobifSum[iccanobifSum.length - 1]
+                  .toString()
+                  .split("")
+                  .reverse()
+                  .join("")
+            ) +
+               parseInt(
+                  iccanobifSum[iccanobifSum.length - 2]
+                     .toString()
+                     .split("")
+                     .reverse()
+                     .join("")
+               )
+         );
+      } else {
+         iccanobifSum.push(
+            iccanobifSum[iccanobifSum.length - 1] +
+               iccanobifSum[iccanobifSum.length - 2]
+         );
+      }
+   }
+
+   return iccanobifSum[n - 1] - fibonacciSum[n - 1];
+}
+
+// console.log(iccMinusFib(18)); //790920
+
+// (a,b,c) -- dimensions of the brick
+// (w,h) -- dimensions of the hole
+function doesBrickFit(a, b, c, w, h) {
+   if (a > w || b > w) return false;
+   if (a <= h || b <= h) {
+      if (c > w && c > h) return false;
+      return true;
+   }
+}
+
+console.log(doesBrickFit(2, 2, 2, 1, 2)); //true
