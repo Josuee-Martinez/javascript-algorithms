@@ -3461,3 +3461,62 @@ function splitAndDelimit(str, num, del) {
 }
 
 // splitAndDelimit("bellow", 2, "&"); //"be&ll&ow"
+
+function removeLastVowel(str) {
+   let arr = str.split(" ");
+   let vowelsRemoved = [];
+   for (let i = 0; i < arr.length; i++) {
+      let lastA = arr[i].toLowerCase().lastIndexOf("a");
+      let lastE = arr[i].toLowerCase().lastIndexOf("e");
+      let lastI = arr[i].toLowerCase().lastIndexOf("i");
+      let lastO = arr[i].toLowerCase().lastIndexOf("o");
+      let lastU = arr[i].toLowerCase().lastIndexOf("u");
+
+      let greatest = Math.max(lastA, lastE, lastI, lastO, lastU);
+
+      arr[i] = arr[i].split("");
+      arr[i].splice(greatest, 1);
+      vowelsRemoved.push(arr[i].join(""));
+   }
+
+   return vowelsRemoved.join(" ");
+}
+
+// console.log(
+//    removeLastVowel(
+//       "If you want to live a happy life, tie it to a goal, not to people."
+//    )
+// );
+
+function decode(str) {
+   let finalArr = [];
+
+   for (let i = 0; i < str.length; i++) {
+      finalArr.push(
+         str
+            .charCodeAt(str.indexOf(str[i]))
+            .toString()
+            .split("")
+            .reduce((acc, num) => acc + parseInt(num), 0)
+      );
+   }
+
+   return finalArr;
+}
+
+// decode("wonderful"); //[5, 2, 9, 9, 3]
+
+function inverter(str, type) {
+   let arr = str.toLowerCase().split(" ");
+
+   if (type === "P") {
+      let phraseInvert = arr.reverse().join(" ");
+      return phraseInvert.charAt(0).toUpperCase() + phraseInvert.slice(1);
+   }
+}
+
+console.log(inverter("This is Valhalla", "P")); //Valhalla is this"
+
+inverter("One fine day to start", "W"); //"Eno enif yad ot trats"
+
+console.log(inverter("Division by powers of two", "P")); //"Two of powers by division"
