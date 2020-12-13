@@ -3512,11 +3512,39 @@ function inverter(str, type) {
    if (type === "P") {
       let phraseInvert = arr.reverse().join(" ");
       return phraseInvert.charAt(0).toUpperCase() + phraseInvert.slice(1);
+   } else {
+      let wordInvertArr = "";
+      for (let i = 0; i < arr.length; i++) {
+         arr[i] = arr[i].split("").reverse().join("");
+         wordInvertArr += `${arr[i]} `;
+      }
+      return (
+         wordInvertArr.charAt(0).toUpperCase() +
+         wordInvertArr.slice(1).trimRight()
+      );
    }
 }
 
-console.log(inverter("This is Valhalla", "P")); //Valhalla is this"
+// console.log(inverter("This is Valhalla", "P")); //Valhalla is this"
 
-inverter("One fine day to start", "W"); //"Eno enif yad ot trats"
+function wordsToSentence(words) {
+   if (words === null || words.length === 0) return "";
+   if (words.length === 1 && words[0] === "") return "";
+   if (words.length === 1) return words.join("");
 
-console.log(inverter("Division by powers of two", "P")); //"Two of powers by division"
+   if (words.indexOf("") > -1) {
+      words.splice(words.indexOf(""), 1);
+   }
+
+   words.splice(words.length - 1, 0, "and");
+
+   let length = words.length - 3;
+
+   for (let i = 0; i < length; i++) {
+      words[i] = words[i] + ",";
+   }
+
+   return words.join(" ");
+}
+
+// console.log(wordsToSentence(["edabit"])); //"edabit"
