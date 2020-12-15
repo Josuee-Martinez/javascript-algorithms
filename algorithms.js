@@ -3548,3 +3548,11 @@ function wordsToSentence(words) {
 }
 
 // console.log(wordsToSentence(["edabit"])); //"edabit"
+
+function pets(pets) {
+   let randomPet = Math.floor(Math.random() * pets.length);
+
+   return pets[randomPet];
+}
+
+// console.log(pets(["dog", "cat", "bird"]));
