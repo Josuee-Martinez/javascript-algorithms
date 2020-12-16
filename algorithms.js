@@ -3556,3 +3556,45 @@ function pets(pets) {
 }
 
 // console.log(pets(["dog", "cat", "bird"]));
+
+function primalStrength(n) {
+   let primes = [];
+
+   for (let i = 0; i <= n; i++) {
+      if (isPrime(i)) {
+         primes.push(i);
+      }
+   }
+
+   let distance = primes[primes.length - 1] - primes[primes.length - 2];
+
+   if (isPrime(n + distance)) {
+      return "Balanced";
+   }
+
+   for (let i = 0; i <= n + distance; i++) {
+      if (isPrime(i) && i > n) {
+         primes.push(i);
+      }
+   }
+
+   if (
+      primes[primes.length - 1] > n &&
+      primes[primes.length - 1] < n + distance
+   ) {
+      return "strong";
+   }
+   return "weak";
+}
+
+function isPrime(num) {
+   if (num <= 1) return false;
+
+   for (let i = 2; i < num; i++) {
+      if (num % i === 0) return false;
+   }
+
+   return num > 1;
+}
+
+// console.log(primalStrength(211)); //"Balanced"
