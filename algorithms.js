@@ -3598,3 +3598,27 @@ function isPrime(num) {
 }
 
 // console.log(primalStrength(211)); //"Balanced"
+
+function converter(a, b) {
+   if (a[0] === "fahrenheit" && b === "kelvin") {
+      return Number((((a[1] - 32) * 5) / 9 + 273.15).toFixed(1));
+   } else if (a[0] === "fahrenheit" && b === "celsius") {
+      return (a[1] - 32) * (5 / 9) < 0
+         ? Number(-Math.abs((a[1] - 32) * (5 / 9)).toFixed(1))
+         : Number(((a[1] - 32) * (5 / 9)).toFixed(1));
+   }
+
+   if (a[0] === "celsius" && b === "fahrenheit") {
+      return Number((a[1] * (9 / 5) + 32).toFixed(1));
+   } else if (a[0] === "celsius" && b === "kelvin") {
+      return Number((a[1] + 273.15).toFixed(1));
+   }
+
+   if (a[0] === "kelvin" && b === "fahrenheit") {
+      return (a[1] - 273.15) * (9 / 5) + 32;
+   } else if (a[0] === "kelvin" && b === "celsius") {
+      return Number((a[1] - 273.15).toFixed(1));
+   }
+}
+
+console.log(converter(["fahrenheit", 50], "celsius")); //257.0
