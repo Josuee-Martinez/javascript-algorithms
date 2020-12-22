@@ -3621,4 +3621,85 @@ function converter(a, b) {
    }
 }
 
-console.log(converter(["fahrenheit", 50], "celsius")); //257.0
+// console.log(converter(["fahrenheit", 50], "celsius")); //257.0
+
+function vowelLinks(str) {
+   let arr = str.toLowerCase().split(" ");
+   let startVowels = [];
+   let endVowels = [];
+   let final;
+
+   for (let i = 0; i < arr.length; i++) {
+      if (
+         arr[i].startsWith("a") ||
+         arr[i].startsWith("e") ||
+         arr[i].startsWith("i") ||
+         arr[i].startsWith("o") ||
+         arr[i].startsWith("u")
+      ) {
+         startVowels.push(i);
+      }
+
+      if (
+         arr[i].endsWith("a") ||
+         arr[i].endsWith("e") ||
+         arr[i].endsWith("i") ||
+         arr[i].endsWith("o") ||
+         arr[i].endsWith("u")
+      ) {
+         endVowels.push(i);
+      }
+   }
+
+   if (endVowels.length > startVowels.length) {
+      function calc(number) {
+         if (startVowels.some((n) => number + 1 === n)) {
+            final = true;
+         }
+      }
+
+      for (let i = 0; i < endVowels.length; i++) {
+         calc(endVowels[i]);
+      }
+   } else {
+      function calc(number) {
+         if (endVowels.some((n) => number - 1 === n)) {
+            final = true;
+         }
+      }
+
+      for (let i = 0; i < startVowels.length; i++) {
+         calc(startVowels[i]);
+      }
+   }
+
+   return final === undefined ? false : final;
+}
+
+// console.log(vowelLinks("a very large appliance")); //true
+
+function getHashTags(str) {
+   while (str.indexOf(",") > -1) {
+      str = str.replace(",", "");
+   }
+
+   while (str.indexOf("?") > -1) {
+      str = str.replace("?", "");
+   }
+
+   let arr = str.toLowerCase().split(" ");
+
+   let sorted = arr.sort((a, b) => b.length - a.length);
+
+   for (let i = 0; i < sorted.length; i++) {
+      sorted[i] = "#" + sorted[i];
+   }
+
+   if (sorted.length < 3) return sorted;
+
+   return [sorted[0], sorted[1], sorted[2]];
+}
+
+console.log(
+   getHashTags("How the Avocado Became the Fruit of the Global Trade")
+);
