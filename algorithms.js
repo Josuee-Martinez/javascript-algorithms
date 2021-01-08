@@ -3703,3 +3703,34 @@ function getHashTags(str) {
 console.log(
    getHashTags("How the Avocado Became the Fruit of the Global Trade")
 );
+
+function smallestCommons(arr) {
+   let smallest = Math.min(...arr);
+   let biggest = Math.max(...arr);
+   let range = [];
+
+   for (let i = smallest; i <= biggest; i++) {
+      range.push(i);
+   }
+}
+
+// console.log(smallestCommons([1, 3]));
+
+function nearestVowel(s) {
+   let alphabet = "abcdefghijklmnopqrstuvwxyz";
+   let vowels = ["a", "e", "i", "o", "u"];
+   let distanceFromVowels = [];
+
+   for (let i = 0; i < vowels.length; i++) {
+      distanceFromVowels.push({
+         letter: vowels[i],
+         number: Math.abs(alphabet.indexOf(s) - alphabet.indexOf(vowels[i])),
+      });
+   }
+
+   distanceFromVowels.sort((a, b) => a.number - b.number);
+
+   return distanceFromVowels[0].letter;
+}
+
+// nearestVowel("b"); //"a"
