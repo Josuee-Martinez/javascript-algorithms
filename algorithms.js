@@ -3700,9 +3700,9 @@ function getHashTags(str) {
    return [sorted[0], sorted[1], sorted[2]];
 }
 
-console.log(
-   getHashTags("How the Avocado Became the Fruit of the Global Trade")
-);
+// console.log(
+//    getHashTags("How the Avocado Became the Fruit of the Global Trade")
+// );
 
 function smallestCommons(arr) {
    let smallest = Math.min(...arr);
@@ -3734,3 +3734,53 @@ function nearestVowel(s) {
 }
 
 // nearestVowel("b"); //"a"
+
+function newWord(word) {
+   return word.replace(word.charAt(0), "");
+}
+
+// console.log(newWord("apple"));
+
+function minMax(arr) {
+   return [Math.min(...arr), Math.max(...arr)];
+}
+
+// console.log(minMax([1]));
+
+function correctTitle(str) {
+   let arr = str.split(" ");
+   let wordsToAlter = [" And ", " The ", " Of ", " In "];
+
+   for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1).toLowerCase();
+   }
+
+   for (let i = 0; i < arr.length; i++) {
+      if (arr[i].indexOf("-") > -1) {
+         arr[i] = arr[i].split("-");
+
+         for (let j = 0; j < arr[i].length; j++) {
+            if (arr[i][j].indexOf("the") === -1) {
+               arr[i][j] =
+                  arr[i][j].charAt(0).toUpperCase() + arr[i][j].slice(1);
+            }
+         }
+         arr[i] = arr[i].join("-");
+      }
+   }
+
+   let newStr = arr.join(" ");
+
+   for (let i = 0; i < wordsToAlter.length; i++) {
+      while (newStr.indexOf(wordsToAlter[i]) > -1) {
+         newStr = newStr.replace(
+            wordsToAlter[i],
+            wordsToAlter[i].toLowerCase()
+         );
+      }
+   }
+
+   return newStr;
+}
+
+// console.log(correctTitle("Lord Eddard Stark, Hand of the King."));
