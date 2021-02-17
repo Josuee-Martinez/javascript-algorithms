@@ -3784,3 +3784,15 @@ function correctTitle(str) {
 }
 
 // console.log(correctTitle("Lord Eddard Stark, Hand of the King."));
+
+function AlphabetSoup(str) {
+   console.log(str.split("").sort().join(""));
+}
+
+// AlphabetSoup("javascript");
+
+function lettersOnly(str) {
+   console.log(str.replace(/[^a-zA-Z ]/g, ""));
+}
+
+lettersOnly("R!=:~0o0./c&}9k`60=y");
