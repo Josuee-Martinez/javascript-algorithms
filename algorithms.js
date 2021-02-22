@@ -3795,4 +3795,34 @@ function lettersOnly(str) {
    console.log(str.replace(/[^a-zA-Z ]/g, ""));
 }
 
-lettersOnly("R!=:~0o0./c&}9k`60=y");
+// lettersOnly("R!=:~0o0./c&}9k`60=y");
+
+function centuryFromYear(year) {
+   let answer = year / 100;
+
+   console.log(Math.ceil(answer));
+}
+
+// centuryFromYear(1905);
+
+function checkPalindrome(inputString) {
+   let reversed = inputString.split("").reverse().join("");
+
+   return reversed === inputString ? true : false;
+}
+
+// checkPalindrome("josue");
+
+function adjacentElementsProduct(inputArray) {
+   let products = [];
+
+   for (let i = 0; i < inputArray.length; i++) {
+      products.push(inputArray[i] * inputArray[i + 1]);
+   }
+
+   products.pop();
+
+   return Math.max(...products);
+}
+
+// adjacentElementsProduct([3, 6, -2, -5, 7, 3]);
