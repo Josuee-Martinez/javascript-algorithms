@@ -3826,3 +3826,46 @@ function adjacentElementsProduct(inputArray) {
 }
 
 // adjacentElementsProduct([3, 6, -2, -5, 7, 3]);
+
+function shapeArea(n) {
+   let result = 1;
+
+   for (let i = 1; i <= n - 1; i++) {
+      result += i * 4;
+   }
+
+   console.log(result);
+}
+
+// shapeArea(4);
+
+function makeArrayConsecutive2(statues) {
+   let statuesNeeded = 0;
+
+   for (let i = Math.min(...statues); i <= Math.max(...statues); i++) {
+      if (!(statues.indexOf(i) > -1)) {
+         statuesNeeded += 1;
+      }
+   }
+
+   return statuesNeeded;
+}
+
+// makeArrayConsecutive2([6, 2, 3, 8]);
+
+function almostIncreasingSequence(sequence) {
+   let cont = [];
+
+   for (let i = 0; i < sequence.length; i++) {
+      if (sequence[i] < sequence[i + 1]) {
+         cont.push(sequence[i], sequence[i + 1]);
+      } else if (!(sequence[i] < sequence[i + 1])) {
+         sequence.splice(i + 1, 1);
+      }
+   }
+
+   console.log(cont);
+   console.log(sequence);
+}
+
+almostIncreasingSequence([1, 3, 2, 4]);
