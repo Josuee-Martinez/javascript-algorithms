@@ -3868,4 +3868,68 @@ function almostIncreasingSequence(sequence) {
    console.log(sequence);
 }
 
-almostIncreasingSequence([1, 3, 2, 4]);
+// almostIncreasingSequence([1, 3, 2, 4]);
+
+// function almostIncreasingSequence(sequence) {
+//    let deleted = [];
+//    let added = [];
+
+//    for (let i = 0; i < sequence.length; i++) {
+//       if (sequence[i + 1] !== undefined) {
+//          if (sequence[i] >= sequence[i + 1]) {
+//             // console.log(sequence[i], sequence[i + 1]);
+//             deleted.push(...sequence.splice(i + 1, 1));
+//          }
+//       }
+//    }
+//    console.log(sequence);
+// }
+
+// function almostIncreasingSequence(seq) {
+//    var bad = 0;
+//    for (var i = 1; i < seq.length; i++)
+//       if (seq[i] <= seq[i - 1]) {
+//          bad++;
+//          if (bad > 1) return false;
+//          if (seq[i] <= seq[i - 2] && seq[i + 1] <= seq[i - 1]) return false;
+//       }
+//    return true;
+// }
+// console.log(almostIncreasingSequence([1, 3, 2, 1]));
+
+function matrixElementsSum(matrix) {
+   if (matrix.length === 1)
+      return matrix[0].reduce((acc, n) => {
+         return acc + n;
+      });
+
+   let a = matrix[0];
+   let b = matrix[1];
+   let c = matrix[2];
+
+   for (let i = 0; i < a.length; i++) {
+      if (a[i] === 0) {
+         b[i] = 0;
+      }
+
+      if (matrix.lenght > 2) {
+         if (b[i] === 0) {
+            c[i] = 0;
+         }
+      }
+   }
+
+   let result = [...a, ...b, ...c];
+
+   return result.reduce((acc, n) => {
+      return acc + n;
+   });
+}
+
+// console.log(
+//    matrixElementsSum([
+//       [0, 1, 1, 2],
+//       [0, 5, 0, 0],
+//       [1, 0, 9, 5],
+//    ])
+// );
