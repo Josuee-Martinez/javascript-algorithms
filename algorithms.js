@@ -3933,3 +3933,32 @@ function matrixElementsSum(matrix) {
 //       [1, 0, 9, 5],
 //    ])
 // );
+
+function allLongestStrings(inputArray) {
+   let longest = inputArray.sort((a, b) => b.length - a.length);
+   let arr = [];
+   for (let i = 0; i < inputArray.length; i++) {
+      if (inputArray[i].length === longest[0].length) {
+         arr.push(inputArray[i]);
+      }
+   }
+   console.log(arr);
+}
+
+// allLongestStrings(["aba", "aa", "ad", "vcd", "aba"]);
+
+function commonCharacterCount(s1, s2) {
+   let s1Arr = s1.split("");
+   let s2Arr = s2.split("");
+
+   let commonChars = 0;
+   for (let i = 0; i < s1Arr.length; i++) {
+      if (s2Arr.indexOf(s1Arr[i]) > -1) {
+         s2Arr.splice(s2Arr.indexOf(s1Arr[i]), 1);
+         commonChars++;
+      }
+   }
+   console.log(commonChars);
+}
+
+commonCharacterCount("aabcc", "adcaa");
