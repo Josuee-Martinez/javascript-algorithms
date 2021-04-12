@@ -3961,4 +3961,24 @@ function commonCharacterCount(s1, s2) {
    console.log(commonChars);
 }
 
-commonCharacterCount("aabcc", "adcaa");
+// commonCharacterCount("aabcc", "adcaa");
+
+function isLucky(n) {
+   let first = 0;
+   let second = 0;
+
+   let numStr = n.toString().split("");
+   let halfWay = numStr.length / 2;
+   numStr.splice(halfWay, 0, "l");
+
+   numStr = numStr.join("").split("l");
+
+   for (let i = 0; i < halfWay; i++) {
+      first += Number(numStr[0][i]);
+      second += Number(numStr[1][i]);
+   }
+
+   return first === second;
+}
+
+console.log(isLucky(239017));
