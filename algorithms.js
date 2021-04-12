@@ -4020,7 +4020,7 @@ function largestNumber(n) {
 // console.log(largestNumber(3));
 
 function candies(n, m) {
-   // if (n === m) return 1;
+   if (n === m) return 1;
    let sub = m - (m % n);
 
    return sub;
