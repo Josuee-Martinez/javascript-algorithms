@@ -3981,4 +3981,49 @@ function isLucky(n) {
    return first === second;
 }
 
-console.log(isLucky(239017));
+// console.log(isLucky(239017));
+
+function sortByHeight(a) {
+   let myArr = [...a];
+
+   myArr = myArr.filter((item) => item !== -1).sort((a, b) => a - b);
+
+   for (let i = 0; i < a.length; i++) {
+      if (a[i] === -1) {
+         myArr.splice(i, 0, a[i]);
+      }
+   }
+
+   console.log(myArr);
+}
+
+// sortByHeight([23, 54, -1, 43, 1, -1, -1, 77, -1, -1, -1, 3]);
+
+function addTwoDigits(n) {
+   let arr = n.toString().split("");
+
+   return Number(arr[0]) + Number(arr[1]);
+}
+
+// console.log(addTwoDigits(29));
+
+function largestNumber(n) {
+   let result = [];
+
+   for (let i = 0; i < n; i++) {
+      result.push(9);
+   }
+
+   return Number(result.join(""));
+}
+
+// console.log(largestNumber(3));
+
+function candies(n, m) {
+   // if (n === m) return 1;
+   let sub = m - (m % n);
+
+   return sub;
+}
+
+console.log(candies(3, 10));
