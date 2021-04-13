@@ -4026,4 +4026,25 @@ function candies(n, m) {
    return sub;
 }
 
-console.log(candies(3, 10));
+// console.log(candies(3, 10));
+
+function seatsInTheater(nCols, nRows, col, row) {
+   // console.log(nCols * nRows);
+   return (nCols - col + 1) * (nRows - row);
+}
+
+// seatsInTheater(16, 11, 5, 3);
+
+function maxMultiple(divisor, bound) {
+   let largeNumbers = [];
+
+   for (let i = 1; i <= bound; i++) {
+      if (i % divisor === 0) {
+         largeNumbers.push(i);
+      }
+   }
+
+   return Math.max(...largeNumbers);
+}
+
+// maxMultiple(3, 10);
