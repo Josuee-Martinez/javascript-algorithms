@@ -4048,3 +4048,82 @@ function maxMultiple(divisor, bound) {
 }
 
 // maxMultiple(3, 10);
+
+function lateRide(n) {
+   let hours = n / 60;
+   let rhours = Math.floor(hours);
+   let minutes = (hours - rhours) * 60;
+   let rminutes = Math.round(minutes);
+
+   let strHours = rhours.toString();
+   let strMinutes = rminutes.toString();
+
+   let addedHours;
+   let addedMinutes;
+   if (strHours.length > 1) {
+      addedHours = Number(strHours[0]) + Number(strHours[1]);
+   } else {
+      addedHours = Number(strHours[0]);
+   }
+
+   if (strMinutes.length > 1) {
+      addedMinutes = Number(strMinutes[0]) + Number(strMinutes[1]);
+   } else {
+      addedMinutes = Number(strMinutes[0]);
+   }
+
+   console.log(addedHours + addedMinutes);
+}
+
+// lateRide(808);
+
+function phoneCall(min1, min2_10, min11, s) {
+   let amount = Number(s.toString());
+   let count = [];
+
+   for (let i = 1; i <= s; i++) {
+      if (i === 1 && amount > min1) {
+         amount = amount - min1;
+         count.push(min1);
+      }
+
+      if (i > 1 && i < 11 && amount >= min2_10) {
+         amount = amount - min2_10;
+         count.push(min2_10);
+      }
+
+      if (i > 10 && amount >= min11) {
+         amount = amount - min11;
+         count.push(min11);
+      }
+
+      // console.log(amount);
+   }
+   console.log(count);
+}
+
+// phoneCall(3, 1h, 2, 25);
+
+function reachNextLevel(experience, threshold, reward) {
+   return experience + reward >= threshold;
+}
+
+// reachNextLevel(10, 15, 5);
+
+function knapsackLight(value1, weight1, value2, weight2, maxW) {
+   let totalWeight = weight1 + weight2;
+   let one = [value1, weight1, value2, weight2];
+
+   if (totalWeight > maxW) {
+      let heaviest = Math.max(...[weight1, weight2]);
+      let lightest = Math.min(...[weight1, weight2]);
+
+      if (maxW >= heaviest) return one[one.indexOf(heaviest) - 1];
+      if (maxW < heaviest && maxW >= lightest)
+         return one[one.indexOf(lightest) - 1];
+   }
+
+   return value1 + value2;
+}
+
+// console.log(knapsackLight(2, 5, 3, 4, 5));
