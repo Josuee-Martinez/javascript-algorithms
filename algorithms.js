@@ -4110,20 +4110,84 @@ function reachNextLevel(experience, threshold, reward) {
 
 // reachNextLevel(10, 15, 5);
 
+function sortArray(arr) {
+   let myArr = [];
+   let smallest;
+   while (arr.length > 0) {
+      smallest = Math.min(...arr);
+      myArr.push(smallest);
+      arr.splice(arr.indexOf(smallest), 1);
+   }
+   console.log(myArr);
+}
+
+// sortArray([2, -5, 1, 4, 7, 8]);
+
 function knapsackLight(value1, weight1, value2, weight2, maxW) {
    let totalWeight = weight1 + weight2;
    let one = [value1, weight1, value2, weight2];
+   let heaviest = Math.max(...[weight1, weight2]);
+   let lightest = Math.min(...[weight1, weight2]);
+   console.log(one.join("").charAt());
+   // if (totalWeight > maxW) {
+   //    let heaviest = Math.max(...[weight1, weight2]);
+   //    let lightest = Math.min(...[weight1, weight2]);
 
-   if (totalWeight > maxW) {
-      let heaviest = Math.max(...[weight1, weight2]);
-      let lightest = Math.min(...[weight1, weight2]);
+   //    if (maxW >= heaviest && maxW >= lightest) {
+   //       return Math.max(
+   //          one[one.indexOf(heaviest) - 1],
+   //          one[one.indexOf(lightest) - 1]
+   //       );
 
-      if (maxW >= heaviest) return one[one.indexOf(heaviest) - 1];
-      if (maxW < heaviest && maxW >= lightest)
-         return one[one.indexOf(lightest) - 1];
-   }
+   //    }
 
-   return value1 + value2;
+   //    if (maxW >= heaviest) return one[one.indexOf(heaviest) - 1];
+   //    if (maxW < heaviest && maxW >= lightest)
+   //       return one[one.indexOf(lightest) - 1];
+   // }
+
+   // return value1 + value2;
 }
 
-// console.log(knapsackLight(2, 5, 3, 4, 5));
+// console.log(knapsackLight(4, 3, 3, 4, 4));
+
+function sortIt(arr, str) {
+   let myArr = [];
+   let smallest;
+
+   while (arr.length > 0) {
+      smallest = Math.min(...arr);
+      str === "A" ? myArr.push(smallest) : myArr.unshift(smallest);
+      arr.splice(arr.indexOf(smallest), 1);
+   }
+
+   console.log(myArr);
+}
+
+// sortIt([2, -5, 1, 4, 7, 8], "A");
+
+function lostDog(h1, h2, h3, h4) {
+   let building = [h1, h2, h3, h4];
+   let dogsFound = 0;
+   let obj = {};
+
+   for (let i = 0; i < building.length; i++) {
+      if (building[i].indexOf(0) > -1) {
+         dogsFound++;
+         obj[`Dog${dogsFound}`] = `House (${i + 1}) and Room (${
+            building[i].indexOf(0) + 1
+         })`;
+      }
+   }
+
+   if (dogsFound < 1) obj = "Dog not found!";
+
+   console.log(obj);
+}
+
+lostDog(
+   [1, 1, 1, 1, 1, 1],
+   [1, 1, 1, 1, 1, 0],
+   [1, 1, 1, 1, 1, 1],
+   [1, 1, 1, 1, 1, 1]
+);
