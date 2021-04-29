@@ -4123,34 +4123,6 @@ function sortArray(arr) {
 
 // sortArray([2, -5, 1, 4, 7, 8]);
 
-function knapsackLight(value1, weight1, value2, weight2, maxW) {
-   let totalWeight = weight1 + weight2;
-   let one = [value1, weight1, value2, weight2];
-   let heaviest = Math.max(...[weight1, weight2]);
-   let lightest = Math.min(...[weight1, weight2]);
-   console.log(one.join("").charAt());
-   // if (totalWeight > maxW) {
-   //    let heaviest = Math.max(...[weight1, weight2]);
-   //    let lightest = Math.min(...[weight1, weight2]);
-
-   //    if (maxW >= heaviest && maxW >= lightest) {
-   //       return Math.max(
-   //          one[one.indexOf(heaviest) - 1],
-   //          one[one.indexOf(lightest) - 1]
-   //       );
-
-   //    }
-
-   //    if (maxW >= heaviest) return one[one.indexOf(heaviest) - 1];
-   //    if (maxW < heaviest && maxW >= lightest)
-   //       return one[one.indexOf(lightest) - 1];
-   // }
-
-   // return value1 + value2;
-}
-
-// console.log(knapsackLight(4, 3, 3, 4, 4));
-
 function sortIt(arr, str) {
    let myArr = [];
    let smallest;
@@ -4185,9 +4157,84 @@ function lostDog(h1, h2, h3, h4) {
    console.log(obj);
 }
 
-lostDog(
-   [1, 1, 1, 1, 1, 1],
-   [1, 1, 1, 1, 1, 0],
-   [1, 1, 1, 1, 1, 1],
-   [1, 1, 1, 1, 1, 1]
-);
+// lostDog(
+//    [1, 1, 1, 1, 1, 1],
+//    [1, 1, 1, 1, 1, 0],
+//    [1, 1, 1, 1, 1, 1],
+//    [1, 1, 1, 1, 1, 1]
+// );
+
+function knapsackLight(value1, weight1, value2, weight2, maxW) {
+   let totalWeight = weight1 + weight2;
+   let one = [value1, weight1, value2, weight2];
+
+   if (totalWeight > maxW) {
+      let heaviest = Math.max(...[weight1, weight2]);
+      let lightest = Math.min(...[weight1, weight2]);
+
+      if (maxW >= heaviest && maxW >= lightest) return Math.max(value1, value2);
+      if (maxW < heaviest && maxW < lightest) return 0;
+
+      if (maxW >= heaviest) return one[one.indexOf(heaviest) - 1];
+
+      if (maxW < heaviest && maxW >= lightest) {
+         let v1 = value1;
+         let v2 = value2;
+
+         return one[one.indexOf(v1) + 1] <= maxW ? v1 : v2;
+      }
+   }
+
+   return value1 + value2;
+}
+
+// console.log(knapsackLight(3, 4, 5, 3, 3));
+
+function extraNumber(a, b, c) {
+   if (a === b) return c;
+   if (a === c) return b;
+   if (c === b) return a;
+}
+
+// console.log(extraNumber(2, 7, 2));
+
+function isInfiniteProcess(a, b) {
+   if (a < 0 || b < 0) return 0;
+   if (a === b) return false;
+
+   let diff;
+
+   if (a < b) {
+      diff = b - a;
+      if (diff % 2 === 0) return false;
+      return true;
+   }
+
+   if (a > b) {
+      diff = a - b;
+
+      let isPrime = true;
+      for (let i = 2; i < diff; i++) {
+         if (diff % i == 0) {
+            isPrime = false;
+            break;
+         }
+      }
+
+      if (isPrime) return true;
+
+      if (diff % 2 === 0) return true;
+      return false;
+   }
+}
+
+// console.log(isInfiniteProcess(2, 6));
+// console.log(isInfiniteProcess(2, 3));
+// console.log(isInfiniteProcess(13, 8));
+
+function arithmeticExpression(a, b, c) {
+   if (a + b === c || a - b === c || a * b === c || a / b === c) return true;
+   return false;
+}
+
+// console.log(arithmeticExpression(2, 3, 5));
