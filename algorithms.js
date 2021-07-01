@@ -4238,3 +4238,398 @@ function arithmeticExpression(a, b, c) {
 }
 
 // console.log(arithmeticExpression(2, 3, 5));
+
+function tennisSet(score1, score2) {
+   if (score1 < 5 && score2 < 5) {
+      return false;
+   }
+
+   if (score1 >= 7 && score2 >= 7) {
+      return false;
+   }
+   if ((score1 === 7 && score2 >= 5) || (score2 === 7 && score1 >= 5)) {
+      return true;
+   }
+
+   if ((score1 === 6 && score2 < 5) || (score2 === 6 && score1 < 5)) {
+      return true;
+   }
+
+   if ((score1 > 6 && score2 < 5) || (score2 > 6 && score1 < 5)) {
+      return false;
+   }
+
+   if ((score1 >= 6 && score2 >= 5) || (score2 >= 6 && score2 >= 5)) {
+      return false;
+   }
+}
+
+// console.log(tennisSet(7, 7));
+
+function willYou(young, beautiful, loved) {
+   if ((!young || !beautiful) && loved) return true;
+
+   if (!young && !beautiful && loved) return true;
+
+   if (young && beautiful && !loved) return true;
+
+   return false;
+}
+
+// console.log(willYou(true, true, false));
+
+function metroCard(lastNumberOfDays) {
+   let months = [
+      {
+         month: "January",
+         days: 31,
+      },
+      {
+         month: "February",
+         days: 28,
+      },
+      {
+         month: "March",
+         days: 31,
+      },
+      {
+         month: "April",
+         days: 30,
+      },
+      {
+         month: "May",
+         days: 31,
+      },
+      {
+         month: "June",
+         days: 30,
+      },
+      {
+         month: "July",
+         days: 31,
+      },
+      {
+         month: "Agoust",
+         days: 31,
+      },
+      {
+         month: "September",
+         days: 30,
+      },
+      {
+         month: "October",
+         days: 31,
+      },
+      {
+         month: "November",
+         days: 30,
+      },
+      {
+         month: "December",
+         days: 31,
+      },
+   ];
+
+   let probabilities = [];
+
+   let probableDays = [];
+
+   for (let i = 0; i < months.length; i++) {
+      if (lastNumberOfDays === months[i].days) {
+         probabilities.push(i + 1);
+      }
+   }
+
+   for (let i = 0; i < probabilities.length; i++) {
+      if (probabilities[i] === 12) {
+         probableDays.push(31);
+      } else {
+         probableDays.push(months[probabilities[i]].days);
+      }
+   }
+
+   return [...new Set(...[probableDays.sort((a, b) => a - b)])];
+}
+
+// console.log(metroCard(31));
+
+function killKthBit(n, k) {
+   return theReturnFunc(n, k);
+}
+
+function theReturnFunc(n, k) {
+   let binary = (n >>> 0).toString(2);
+
+   binary = binary.split("");
+
+   binary.splice(binary.length - k, 1, "0");
+
+   let digit = parseInt(binary.join(""), 2);
+
+   return digit;
+}
+
+// console.log(killKthBit(37, 3));
+
+function sevenBoom(arr) {
+   for (let i = 0; i < arr.length; i++) {
+      if (arr[i].toString().split("").indexOf("7") > -1) return "Boom!";
+   }
+   return "there is no 7 in the array";
+}
+
+// console.log(sevenBoom([2, 55, 60, 97, 86]));
+
+// function longest7SegmentWord(arr) {
+//    let filteredArr = [];
+//    let longest = "";
+//    for (let i = 0; i < arr.length; i++) {
+//       if (
+//          !(
+//             arr[i].indexOf("k") > -1 ||
+//             arr[i].indexOf("m") > -1 ||
+//             arr[i].indexOf("v") > -1 ||
+//             arr[i].indexOf("w") > -1 ||
+//             arr[i].indexOf("x") > -1
+//          )
+//       ) {
+//          filteredArr.push(arr[i]);
+//       }
+//    }
+
+//    for (let i = 0; i < filteredArr.length; i++) {
+//       if (filteredArr[i].length > longest.length) {
+//          longest = filteredArr[i];
+//       }
+//    }
+
+//    return longest.length === 0 ? "" : longest;
+// }
+
+// console.log(
+//    longest7SegmentWord(["coding", "crackers", "edabit", "celebration"])
+// );
+
+function longest7SegmentWord(arr) {
+   function filterLetters(word) {
+      let filteredLetters = ["k", "m", "v", "w", "x"];
+
+      for (let i = 0; i < filteredLetters.length; i++) {
+         if (word.indexOf(filteredLetters[i]) === -1) {
+            return word;
+         }
+      }
+   }
+
+   for (let i = 0; i < arr.length; i++) {
+      filterLetters(arr[i]);
+   }
+}
+
+// console.log(
+//    longest7SegmentWord([
+//       "velocity",
+//       "mackerel",
+//       "woven",
+//       "kingsmen",
+//       "op",
+//       "lo",
+//    ])
+// );
+
+////free code camp repeated challenges
+
+function convertToF(celsius) {
+   let fahrenheit = celsius * (9 / 5) + 32;
+   return fahrenheit;
+}
+
+// console.log(convertToF(20));
+
+function reverseString(str) {
+   let reversedStr = "";
+   // return str.split("").reverse().join("");
+   for (let i = str.length - 1; i >= 0; i--) {
+      reversedStr += str[i];
+   }
+
+   return reversedStr;
+}
+
+// console.log(reverseString("hello"));
+
+function factorialize(num) {
+   let result = 1;
+   for (let i = 1; i <= num; i++) {
+      result *= i;
+   }
+   return result;
+}
+
+// console.log(factorialize(3));
+
+function findLongestWordLength(str) {
+   let arr = str.split(" ");
+
+   let longest = 0;
+
+   for (let i = 0; i < arr.length; i++) {
+      if (arr[i].length > longest) longest = arr[i].length;
+   }
+
+   return longest;
+}
+
+// findLongestWordLength("The quick brown fox jumped over the lazy dog");
+
+function largestOfFour(arr) {
+   let largestNumbers = [];
+   // let biggest = 0;
+
+   for (let i = 0; i < arr.length; i++) {
+      largestNumbers.push(Math.max(...arr[i]));
+   }
+
+   // for (let i = 0; i < arr.length; i++) {
+   //    for (let j = 0; j < arr[i].length; j++) {
+   //       if (arr[i][j] > biggest) {
+   //          biggest = arr[i][j];
+   //       }
+   //    }
+   //    largestNumbers.push(biggest);
+   // }
+
+   console.log(largestNumbers);
+}
+
+// largestOfFour([
+//    [4, 5, 1, 3],
+//    [13, 27, 18, 26],
+//    [32, 35, 37, 39],
+//    [1000, 1001, 857, 1],
+// ]);
+
+function confirmEnding(str, target) {
+   let arr = str.split(" ");
+   let lastWord = arr[arr.length - 1];
+   lastWord = lastWord.split("");
+   lastWord.splice(0, lastWord.length - target.length);
+   lastWord = lastWord.join("");
+
+   console.log(lastWord === target);
+}
+// confirmEnding("He has to give me a new name", "name");
+
+function repeatStringNumTimes(str, num) {
+   let repeatedStr = "";
+
+   for (let i = 0; i < num; i++) {
+      repeatedStr += str;
+   }
+
+   console.log(repeatedStr);
+}
+
+// repeatStringNumTimes("*", 8);
+
+function truncateString(str, num) {
+   return str.length > num
+      ? `${str.split("").splice(0, num).join("")}...`
+      : str;
+}
+
+// console.log(truncateString("A-"));
+
+function findElement(arr, func) {
+   for (let i = 0; i < arr.length; i++) {
+      if (func(arr[i])) {
+         return arr[i];
+      }
+   }
+}
+
+// console.log(findElement([1, 3, 5, 8, 9, 10], (num) => num % 2 === 0));
+
+function booWho(bool) {
+   if (typeof bool === "boolean") {
+      return true;
+   }
+   return false;
+}
+
+// booWho(null);
+
+function titleCase(str) {
+   let arr = str.split(" ");
+
+   for (let i = 0; i < arr.length; i++) {
+      arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1).toLowerCase();
+   }
+
+   return arr.join(" ");
+}
+
+// console.log(titleCase("sHoRt AnD sToUt"));
+
+function frankenSplice(arr1, arr2, n) {
+   let newArr = [...arr2];
+   newArr.splice(n, 0, ...arr1);
+   return newArr;
+}
+
+// console.log(frankenSplice([1, 2], ["a", "b"], 1));
+
+function bouncer(arr) {
+   let indexes = [];
+   for (let i = 0; i < arr.length; i++) {
+      if (!arr[i] || undefined) {
+         indexes.push(i);
+      }
+   }
+
+   for (let i = 0; i < indexes.length; i++) {
+      if (i > 0) {
+         arr.splice(indexes[i] - i, 1);
+      }
+      arr.splice(indexes[i], 1);
+   }
+   console.log(arr);
+}
+
+// bouncer([null, NaN, 1, 2, undefined]);
+
+function getIndexToIns(arr, num) {
+   arr.push(num);
+
+   arr.sort((a, b) => a - b);
+
+   return arr.indexOf(num);
+}
+
+// console.log(getIndexToIns([5, 3, 20, 3], 5));
+
+function mutation(arr) {
+   let item1 = arr[0].toLowerCase();
+   let item2 = arr[1].toLowerCase();
+   let count = 0;
+
+   for (let i = 0; i < item2.length; i++) {
+      if (item1.indexOf(item2[i]) > -1) {
+         count++;
+      }
+   }
+
+   return count === item2.length;
+}
+
+// console.log(mutation(["hello", "hey"]));
+
+function chunkArrayInGroups(arr, size) {
+   let chunks = [];
+   for (let i = 0; i < arr.length / size; i++) {
+      chunks.push(arr.splice(0, size));
+   }
+   console.log(chunks);
+}
+
+console.log(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2));
