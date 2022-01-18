@@ -4632,4 +4632,74 @@ function chunkArrayInGroups(arr, size) {
    console.log(chunks);
 }
 
-console.log(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2));
+// console.log(chunkArrayInGroups([0, 1, 2, 3, 4, 5], 2));
+
+// function sym(...args) {
+//    let sym = [];
+//    let finalArr = [];
+
+//    for (let i = 0; i < args.length; i++) {
+//       args[i].map((num) => {
+//          let numberObj = { number: num };
+//          let numArr = [];
+
+//          args.map((arr) => {
+//             if (arr.indexOf(num) === -1) {
+//                numArr.push(arr.indexOf(num));
+//             }
+//          });
+//          numberObj.amount = numArr;
+//          sym.push(numberObj);
+//       });
+//    }
+
+//    for (let i = 0; i < sym.length; i++) {
+//       if (sym[i].amount.length === args.length - 1) {
+//          finalArr.push(sym[i].number);
+//       }
+//    }
+//    console.log([...new Set(finalArr)]);
+//    return finalArr;
+// }
+
+// sym([1, 2, 5], [2, 3, 5], [3, 4, 5]);
+
+function updateInventory(arr1, arr2) {
+   arr1.forEach((itemIn1, i) =>
+      arr2.forEach((itemIn2, j) => {
+         if (itemIn1[1].indexOf(itemIn2[1]) > -1) {
+            itemIn1[0] = itemIn1[0] + itemIn2[0];
+            arr2.splice(j, 1);
+         }
+      })
+   );
+
+   let newArr = arr1.concat(arr2);
+
+   newArr.sort((a, b) => {
+      if (a[1] === b[1]) {
+         return 0;
+      } else {
+         return a[1] < b[1] ? -1 : 1;
+      }
+   });
+
+   console.log(newArr);
+}
+
+// Example inventory lists
+var curInv = [
+   [21, "Bowling Ball"],
+   [2, "Dirty Sock"],
+   [1, "Hair Pin"],
+   [5, "Microphone"],
+];
+
+var newInv = [
+   [2, "Hair Pin"],
+   [3, "Half-Eaten Apple"],
+   [67, "Bowling Ball"],
+   [7, "Toothpaste"],
+];
+
+// updateInventory(curInv, newInv);
