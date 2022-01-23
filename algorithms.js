@@ -4703,3 +4703,68 @@ var newInv = [
 ];
 
 // updateInventory(curInv, newInv);
+
+function whatIsInAName(collection, source) {
+   const arr = [];
+   // Only change code below this line
+   let keys = Object.keys(source);
+
+   collection.filter((el) => {
+      for (let key of keys) {
+         if (!el.hasOwnProperty(key) || el[key] !== source[key]) {
+            return false;
+         }
+      }
+      arr.push(el);
+   });
+   // Only change code above this line
+
+   return arr;
+}
+
+// console.log(
+//    whatIsInAName(
+//       [{ apple: 1, bat: 2 }, { bat: 2 }, { apple: 1, bat: 2, cookie: 2 }],
+//       { apple: 1, bat: 2 }
+//    )
+// );
+
+function spinalCase(str) {
+   return str
+      .split(/\s|_|(?=[A-Z])|(?:-)/)
+      .join("-")
+      .toLowerCase();
+}
+
+// console.log(spinalCase("The_Andy_Griffith_Show"));
+
+function translatePigLatin(str) {
+   let vowels = ["a", "e", "i", "o", "u"];
+   let vowelFoundIndex = "";
+
+   for (let i = 0; i < str.length; i++) {
+      // console.log(str[i]);
+      if (vowels.indexOf(str[i]) > -1) {
+         vowelFoundIndex = i;
+         break;
+      }
+   }
+   str = str.split("");
+   if (vowelFoundIndex > 0) {
+      let n = str.splice(0, vowelFoundIndex);
+
+      str.push(n.join(""), "ay");
+
+      return str.join("");
+   }
+
+   if (vowelFoundIndex === 0) {
+      str.push("way");
+      return str.join("");
+   }
+
+   str.push("ay");
+   return str.join("");
+}
+
+// console.log(translatePigLatin("rhythm"));
