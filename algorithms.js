@@ -4768,3 +4768,25 @@ function translatePigLatin(str) {
 }
 
 // console.log(translatePigLatin("rhythm"));
+
+function pairElement(str) {
+   let returnedVal = [];
+   let pairs = ["AT", "CG"];
+   let elementsToPair = str.split("");
+
+   for (let i = 0; i < elementsToPair.length; i++) {
+      pairs.forEach((el) => {
+         if (el.indexOf(elementsToPair[i]) > -1) {
+            if (el.indexOf(elementsToPair[i]) === 1) {
+               returnedVal.push([elementsToPair[i], el[0]]);
+            } else {
+               returnedVal.push([elementsToPair[i], el[1]]);
+            }
+         }
+      });
+   }
+
+   console.log(returnedVal);
+}
+
+// pairElement("ATCGA");
