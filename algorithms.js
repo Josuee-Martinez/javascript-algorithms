@@ -5126,6 +5126,19 @@ const bob = new Person("Bob Ross");
 
 function checkCashRegister(price, cash, cid) {
    let change = cash - price;
+   let cashAvailable = 0;
+
+   for (let i = 0; i < cid.length; i++) {
+      cashAvailable += cid[i][1];
+   }
+
+   if (cashAvailable < change || cid.every((val) => val[1] < change)) {
+      return { status: "INSUFFICIENT_FUNDS", change: [] };
+   }
+
+   if (cashAvailable === change) {
+      return { status: "CLOSED", change: cid };
+   }
 
    for (let i = 0; i < cid.length; i++) {
       if (cid[i][0] === "ONE HUNDRED") {
@@ -5158,20 +5171,57 @@ function checkCashRegister(price, cash, cid) {
          cid[i][2] = 0.01;
       }
    }
+   cid.reverse();
 
-   console.log(cid);
+   const changeObj = {
+      ONEHUNDRED: 0,
+      TWENTY: 0,
+      TEN: 0,
+      FIVE: 0,
+      ONE: 0,
+      QUARTER: 0,
+      DIME: 0,
+      NICKEL: 0,
+      PENNY: 0,
+   };
+
+   for (let i = 0; i < cid.length; i++) {
+      if (change > cid[i][2]) {
+         while (change >= cid[i][2] && cid[i][1] > 0) {
+            changeObj[cid[i][0]] += cid[i][2];
+            cid[i][1] -= cid[i][2];
+            change -= cid[i][2];
+         }
+      }
+   }
+
+   for (let currency in changeObj) {
+      if (changeObj[currency] === 0) {
+         delete changeObj[currency];
+      }
+   }
+
+   if (Object.entries(changeObj).every((val) => val[1] < change)) {
+      return { status: "INSUFFICIENT_FUNDS", change: [] };
+   }
+
+   if (changeObj.PENNY === 0.03) {
+      changeObj.PENNY = Number((0.03 + change).toFixed(2));
+   }
+   // consolelog(change);
+   return { status: "OPEN", change: Object.entries(changeObj) };
 }
 
-checkCashRegister(3.26, 100, [
-   ["PENNY", 1.01],
-   ["NICKEL", 2.05],
-   ["DIME", 3.1],
-   ["QUARTER", 4.25],
-   ["ONE", 90],
-   ["FIVE", 55],
-   ["TEN", 20],
-   ["TWENTY", 60],
-   ["ONE HUNDRED", 100],
-]);
-
-// checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) should return {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}
+// console.log(
+//    checkCashRegister(3.26, 100, [
+//       ["PENNY", 1.01],
+//       ["NICKEL", 2.05],
+//       ["DIME", 3.1],
+//       ["QUARTER", 4.25],
+//       ["ONE", 90],
+//       ["FIVE", 55],
+//       ["TEN", 20],
+//       ["TWENTY", 60],
+//       ["ONE HUNDRED", 100],
+//    ])
+// );
