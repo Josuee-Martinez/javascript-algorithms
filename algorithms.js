@@ -4952,3 +4952,226 @@ const filteredList = watchList
 // Only change code above this line
 
 // console.log(filteredList);
+
+// Convert the characters &, <, >, " (double quote), and ' (apostrophe), in a string to their corresponding HTML entities.
+
+// & => &amp; < => &lt; > => &gt;  " => &quot; ' => &apos;
+
+function convertHTML(str) {
+   // let strArr = str.split("");
+
+   // while (strArr.indexOf("&") > -1) {
+   //    strArr.splice(strArr.indexOf("&"), 1, "&amp;");
+   // }
+   // while (strArr.indexOf("<") > -1) {
+   //    strArr.splice(strArr.indexOf("<"), 1, "&lt;");
+   // }
+   // while (strArr.indexOf(">") > -1) {
+   //    strArr.splice(strArr.indexOf(">"), 1, "&gt;");
+   // }
+   // while (strArr.indexOf('"') > -1) {
+   //    strArr.splice(strArr.indexOf('"'), 1, "&quot;");
+   // }
+   // while (strArr.indexOf("'") > -1) {
+   //    strArr.splice(strArr.indexOf("'"), 1, "&apos;");
+   // }
+
+   // console.log(strArr.join(""));
+
+   let strArr = str.split("");
+   let itemToRemove = ["&", "<", ">", '"', "'"];
+   let htmlSymbols = ["&amp;", "&lt;", "&gt;", "&quot;", "&apos;"];
+
+   for (let i = 0; i < itemToRemove.length; i++) {
+      while (strArr.indexOf(itemToRemove[i]) > -1) {
+         strArr.splice(strArr.indexOf(itemToRemove[i]), 1, htmlSymbols[i]);
+      }
+   }
+   console.log(strArr.join(""));
+}
+
+// convertHTML("Hamburgers < Pizza < Tacos");
+
+function smallestCommons(arr) {
+   let range = [];
+   let smallMultiples = [];
+   let largeMultiples = [];
+   let commonMultiples = [];
+   let approved = [];
+   let largeNum = Math.max(...arr);
+   let smallNum = Math.min(...arr);
+
+   for (let i = smallNum; i <= largeNum; i++) {
+      range.push(i);
+   }
+
+   let count1 = 1;
+
+   while (count1 < 90000) {
+      smallMultiples.push(smallNum * count1);
+      largeMultiples.push(largeNum * count1);
+      count1++;
+   }
+
+   // for (let i = 1; i < 1000; i++) {
+   //    smallMultiples.push(smallNum * i);
+   //    largeMultiples.push(largeNum * i);
+   // }
+   let count2 = 0;
+
+   while (count2 < smallMultiples.length) {
+      if (largeMultiples.indexOf(smallMultiples[count2]) > -1) {
+         commonMultiples.push(smallMultiples[count2]);
+      }
+      count2++;
+   }
+
+   // for (let i = 0; i < smallMultiples.length; i++) {
+   //    if (largeMultiples.indexOf(smallMultiples[i]) > -1) {
+   //       commonMultiples.push(smallMultiples[i]);
+   //    }
+   // }
+   let count3 = 0;
+
+   while (count3 < commonMultiples.length) {
+      if (range.every((el) => commonMultiples[count3] % el === 0)) {
+         approved.push(commonMultiples[count3]);
+      }
+      count3++;
+   }
+
+   // for (let i = 0; i < commonMultiples.length; i++) {
+   //    if (range.every((el) => commonMultiples[i] % el === 0)) {
+   //       approved.push(commonMultiples[i]);
+   //    }
+   // }
+
+   console.log(approved);
+}
+
+// smallestCommons([1, 5]);
+
+function steamrollArray(arr) {
+   let resultArr = [];
+   let rrr = [];
+   for (let i = 0; i < arr.length; i++) {
+      resultArr.push(arr[i].toString());
+   }
+   // console.log(resultArr);
+
+   for (let i = 0; i < resultArr.length; i++) {
+      if (resultArr[i] === "") {
+         resultArr.splice(i, 1);
+      }
+      if (resultArr[i].indexOf(",") > -1) {
+         resultArr[i] = resultArr[i].split(",");
+      }
+      if (resultArr[i] === "[object Object]") {
+         resultArr[i] = {};
+      }
+   }
+
+   for (let i = 0; i < resultArr.length; i++) {
+      if (Array.isArray(resultArr[i])) {
+         resultArr[i].forEach((el) => rrr.push(el));
+         resultArr.splice(i, 1);
+      }
+   }
+
+   for (let i = 0; i < rrr.length; i++) {
+      resultArr.push(rrr[i]);
+   }
+
+   for (let i = 0; i < resultArr.length; i++) {
+      if (parseInt(resultArr[i])) {
+         resultArr[i] = parseInt(resultArr[i]);
+      }
+   }
+
+   return resultArr;
+}
+
+// steamrollArray([1, [2], [3, [[4]]]]);
+
+const Person = function (firstAndLast) {
+   let fullName = firstAndLast;
+
+   this.getFirstName = function () {
+      return fullName.split(" ")[0];
+   };
+
+   this.getLastName = function () {
+      return fullName.split(" ")[1];
+   };
+
+   this.getFullName = function () {
+      return fullName;
+   };
+
+   this.setFirstName = function (name) {
+      fullName = name + " " + fullName.split(" ")[1];
+   };
+
+   this.setLastName = function (name) {
+      fullName = fullName.split(" ")[0] + " " + name;
+   };
+
+   this.setFullName = function (name) {
+      fullName = name;
+   };
+};
+
+const bob = new Person("Bob Ross");
+// bob.getFullName();
+
+function checkCashRegister(price, cash, cid) {
+   let change = cash - price;
+
+   for (let i = 0; i < cid.length; i++) {
+      if (cid[i][0] === "ONE HUNDRED") {
+         cid[i][2] = 100;
+      }
+      if (cid[i][0] === "TWENTY") {
+         cid[i][2] = 20;
+      }
+
+      if (cid[i][0] === "TEN") {
+         cid[i][2] = 10;
+      }
+
+      if (cid[i][0] === "FIVE") {
+         cid[i][2] = 5;
+      }
+      if (cid[i][0] === "ONE") {
+         cid[i][2] = 1;
+      }
+      if (cid[i][0] === "QUARTER") {
+         cid[i][2] = 0.25;
+      }
+      if (cid[i][0] === "DIME") {
+         cid[i][2] = 0.1;
+      }
+      if (cid[i][0] === "NICKEL") {
+         cid[i][2] = 0.05;
+      }
+      if (cid[i][0] === "PENNY") {
+         cid[i][2] = 0.01;
+      }
+   }
+
+   console.log(cid);
+}
+
+checkCashRegister(3.26, 100, [
+   ["PENNY", 1.01],
+   ["NICKEL", 2.05],
+   ["DIME", 3.1],
+   ["QUARTER", 4.25],
+   ["ONE", 90],
+   ["FIVE", 55],
+   ["TEN", 20],
+   ["TWENTY", 60],
+   ["ONE HUNDRED", 100],
+]);
+
+// checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]) should return {status: "OPEN", change: [["TWENTY", 60], ["TEN", 20], ["FIVE", 15], ["ONE", 1], ["QUARTER", 0.5], ["DIME", 0.2], ["PENNY", 0.04]]}
