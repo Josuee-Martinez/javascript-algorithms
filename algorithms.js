@@ -5225,3 +5225,267 @@ function checkCashRegister(price, cash, cid) {
 //       ["ONE HUNDRED", 100],
 //    ])
 // );
+
+// function convertToRoman(num) {
+//    let numArr = num.toString().split("");
+
+//    // THOUSANDS
+//    if (numArr.length === 4) {
+//       let firstDigit = "";
+//       let secondDigit = "";
+//       let thirdDigit = "";
+//       let fourthDigit = "";
+//       let count = 1;
+
+//       while (count <= Number(numArr[0])) {
+//          firstDigit += "M";
+
+//          count++;
+//       }
+//       count = 1;
+
+//       while (count <= Number(numArr[1])) {
+//          if (count === 5) {
+//             secondDigit = "D";
+//          } else if (count === 4) {
+//             secondDigit = "CD";
+//          } else if (count < 4) {
+//             secondDigit += "C";
+//          } else if (count === 9) {
+//             secondDigit = "CM";
+//          } else {
+//             secondDigit += "C";
+//          }
+
+//          count++;
+//       }
+//       count = 1;
+
+//       while (count <= Number(numArr[2])) {
+//          if (count === 5) {
+//             thirdDigit = "L";
+//          } else if (count === 4) {
+//             thirdDigit = "XL";
+//          } else if (count < 4) {
+//             thirdDigit += "X";
+//          } else if (count === 9) {
+//             thirdDigit = "XC";
+//          } else {
+//             thirdDigit += "X";
+//          }
+
+//          count++;
+//       }
+//       count = 1;
+
+//       while (count <= Number(numArr[3])) {
+//          if (count === 5) {
+//             fourthDigit = "V";
+//          } else if (count === 4) {
+//             fourthDigit = "IV";
+//          } else if (count === 9) {
+//             fourthDigit = "IX";
+//          } else {
+//             fourthDigit += "I";
+//          }
+//          count++;
+//       }
+//       return `${firstDigit}${secondDigit}${thirdDigit}${fourthDigit}`;
+//    }
+
+//    // HUNDREDS
+//    if (numArr.length === 3) {
+//       let firstDigit = "";
+//       let secondDigit = "";
+//       let thirdDigit = "";
+//       let count = 1;
+
+//       while (count <= Number(numArr[0])) {
+//          if (count === 5) {
+//             firstDigit = "D";
+//          } else if (count === 4) {
+//             firstDigit = "CD";
+//          } else if (count < 4) {
+//             firstDigit += "C";
+//          } else if (count === 9) {
+//             firstDigit = "CM";
+//          } else {
+//             firstDigit += "C";
+//          }
+
+//          count++;
+//       }
+//       count = 1;
+
+//       while (count <= Number(numArr[1])) {
+//          if (count === 5) {
+//             secondDigit = "L";
+//          } else if (count === 4) {
+//             secondDigit = "XL";
+//          } else if (count < 4) {
+//             secondDigit += "X";
+//          } else if (count === 9) {
+//             secondDigit = "XC";
+//          } else {
+//             secondDigit += "X";
+//          }
+
+//          count++;
+//       }
+//       count = 1;
+
+//       while (count <= Number(numArr[2])) {
+//          if (count === 5) {
+//             thirdDigit = "V";
+//          } else if (count === 4) {
+//             thirdDigit = "IV";
+//          } else if (count === 9) {
+//             thirdDigit = "IX";
+//          } else {
+//             thirdDigit += "I";
+//          }
+//          count++;
+//       }
+//       return `${firstDigit}${secondDigit}${thirdDigit}`;
+//    }
+
+//    // TENS
+//    if (numArr.length === 2) {
+//       let firstDigit = "";
+//       let secondDigit = "";
+//       let count = 1;
+//       while (count <= Number(numArr[0])) {
+//          if (count === 5) {
+//             firstDigit = "L";
+//          } else if (count === 4) {
+//             firstDigit = "XL";
+//          } else if (count < 4) {
+//             firstDigit += "X";
+//          } else if (count === 9) {
+//             firstDigit = "XC";
+//          } else {
+//             firstDigit += "X";
+//          }
+
+//          count++;
+//       }
+//       count = 1;
+
+//       while (count <= Number(numArr[1])) {
+//          if (count === 5) {
+//             secondDigit = "V";
+//          } else if (count === 4) {
+//             secondDigit = "IV";
+//          } else if (count === 9) {
+//             secondDigit = "IX";
+//          } else {
+//             secondDigit += "I";
+//          }
+//          count++;
+//       }
+
+//       return `${firstDigit}${secondDigit}`;
+//    }
+
+//    // ONES
+//    if (numArr.length === 1) {
+//       let digit = "";
+//       let count = 1;
+//       while (count <= Number(numArr[0])) {
+//          if (count === 5) {
+//             digit = "V";
+//          } else if (count === 4) {
+//             digit = "IV";
+//          } else if (count === 9) {
+//             digit = "IX";
+//          } else {
+//             digit += "I";
+//          }
+//          count++;
+//       }
+//       return `${firstDigit}`;
+//    }
+// }
+
+// console.log(convertToRoman(1001));
+
+function convertToRoman(num) {
+   let numArr = num.toString();
+
+   return numArr.length === 4
+      ? convertFour(Number(numArr[0])) +
+           convertThree(Number(numArr[1])) +
+           convertTwo(Number(numArr[2])) +
+           convertOne(Number(numArr[3]))
+      : numArr.length === 3
+      ? convertThree(Number(numArr[0])) +
+        convertTwo(Number(numArr[1])) +
+        convertOne(Number(numArr[2]))
+      : numArr.length === 2
+      ? convertTwo(Number(numArr[0])) + convertOne(Number(numArr[1]))
+      : convertOne(Number(numArr[0]));
+}
+
+function convertOne(num) {
+   let digit = "";
+   let count = 1;
+   while (count <= num) {
+      count === 5
+         ? (digit = "V")
+         : count === 4
+         ? (digit = "IV")
+         : count === 9
+         ? (digit = "IX")
+         : (digit += "I");
+      count++;
+   }
+   return digit;
+}
+
+function convertTwo(num) {
+   let digit = "";
+   let count = 1;
+   while (count <= num) {
+      count === 5
+         ? (digit = "L")
+         : count === 4
+         ? (digit = "XL")
+         : count < 4
+         ? (digit += "X")
+         : count === 9
+         ? (digit = "XC")
+         : (digit += "X");
+      count++;
+   }
+   return digit;
+}
+
+function convertThree(num) {
+   let digit = "";
+   let count = 1;
+   while (count <= num) {
+      count === 5
+         ? (digit = "D")
+         : count === 4
+         ? (digit = "CD")
+         : count < 4
+         ? (digit += "C")
+         : count === 9
+         ? (digit = "CM")
+         : (digit += "C");
+      count++;
+   }
+   return digit;
+}
+
+function convertFour(num) {
+   let count = 1;
+   let digit = "";
+   while (count <= num) {
+      digit += "M";
+      count++;
+   }
+   return digit;
+}
+
+console.log(convertToRoman(1100));
