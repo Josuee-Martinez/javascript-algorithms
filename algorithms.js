@@ -5488,4 +5488,69 @@ function convertFour(num) {
    return digit;
 }
 
-console.log(convertToRoman(1100));
+function rot13(str) {
+   let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZ";
+   let resultStr = "";
+
+   for (let i = 0; i < str.length; i++) {
+      if (alphabet.indexOf(str[i]) > -1) {
+         resultStr += alphabet[alphabet.indexOf(str[i]) + 13];
+      } else if (str[i] === " ") {
+         resultStr += " ";
+      } else {
+         resultStr += str[i];
+      }
+   }
+   return resultStr;
+}
+
+// console.log(rot13("SERR PBQR PNZC?"));
+
+function telephoneCheck(str) {
+   if (str[0] == "-") {
+      return false;
+   }
+
+   let count = 1;
+   while (count <= 2) {
+      if (str.indexOf("-") > -1) {
+         str = str.replace("-", "");
+      }
+      count++;
+   }
+
+   while (str.indexOf(" ") > -1) {
+      str = str.replace(" ", "");
+   }
+
+   if (
+      str.length === 13 &&
+      (str[0] === "1") & (str[1] === "(") &&
+      str[5] === ")"
+   ) {
+      while (str.indexOf("(") > -1 && str.indexOf(")") > -1) {
+         str = str.replace("(", "");
+         str = str.replace(")", "");
+      }
+   }
+
+   if (str.length === 12 && str[0] === "(" && str[4] === ")") {
+      while (str.indexOf("(") > -1 && str.indexOf(")") > -1) {
+         str = str.replace("(", "");
+         str = str.replace(")", "");
+      }
+   }
+
+   if (str.length === 11 && str[0] !== "1") {
+      return false;
+   }
+
+   if (str.length === 10 || str.length === 11) {
+      str = str.split("").every((num) => Number.isInteger(parseInt(num)));
+      return str;
+   }
+
+   return false;
+}
+
+// console.log(telephoneCheck("(555)-555-5555"));
