@@ -5554,3 +5554,32 @@ function telephoneCheck(str) {
 }
 
 // console.log(telephoneCheck("(555)-555-5555"));
+
+function sym(...args) {
+   let resultArr = [];
+
+   while (args.length > 0) {
+      args[0].forEach((num) => {
+         if (args[1].indexOf(num) === -1) {
+            resultArr.push(num);
+         }
+      });
+
+      args[1].forEach((num) => {
+         if (args[0].indexOf(num) === -1) {
+            resultArr.push(num);
+         }
+      });
+
+      args.splice(0, 2);
+
+      if (args.length > 0) {
+         args.push(resultArr);
+         resultArr = [];
+      }
+   }
+
+   return [...new Set(resultArr)].sort();
+}
+
+sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]);
