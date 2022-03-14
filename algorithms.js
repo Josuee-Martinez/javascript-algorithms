@@ -5582,4 +5582,18 @@ function sym(...args) {
    return [...new Set(resultArr)].sort();
 }
 
-sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]);
+// sym([3, 3, 3, 2, 5], [2, 1, 5, 7], [3, 4, 6, 6], [1, 2, 3], [5, 3, 9, 8], [1]);
+
+function zeroesToEnd(a) {
+   let zeroes = [];
+   while (a.indexOf(0) > -1) {
+      a.splice(a.indexOf(0), 1);
+      zeroes.push(0);
+   }
+   a.push(...zeroes);
+
+   return a;
+}
+
+zeroesToEnd([0, 0]);
+// zeroesToEnd([1, 2, 0, 0, 4, 0, 5]) ➞ [1, 2, 4, 5, 0, 0, 0]
