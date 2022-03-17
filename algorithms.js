@@ -5595,5 +5595,31 @@ function zeroesToEnd(a) {
    return a;
 }
 
-zeroesToEnd([0, 0]);
+// zeroesToEnd([0, 0]);
 // zeroesToEnd([1, 2, 0, 0, 4, 0, 5]) ➞ [1, 2, 4, 5, 0, 0, 0]
+
+function fiboEvenSum(n) {
+   //Fibonicci sequence start with 1 and 2 and add them together
+   let fibo = [1, 2];
+
+   let count = 1;
+
+   while (count <= n) {
+      //add the last two numbers in the array together
+      let addSequence = fibo[fibo.length - 1] + fibo[fibo.length - 2];
+      //push the sum to the end of the array
+      fibo.push(addSequence);
+      //continue this until count is less or equal to n
+      count++;
+   }
+
+   fibo = fibo
+      //filter the fibo array by even numbers and number less or equal to n
+      .filter((num) => num % 2 === 0 && num <= n)
+      //add all elements of the array
+      .reduce((prev, curr) => prev + curr, 0);
+
+   return fibo;
+}
+
+console.log(fiboEvenSum(1000));
