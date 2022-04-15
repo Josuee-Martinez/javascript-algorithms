@@ -5700,3 +5700,25 @@ function prime(x) {
 }
 
 // console.log(nthPrime(10001));
+
+function specialPythagoreanTriplet(n) {
+  let product;
+  let a;
+  let b;
+
+  for (a = 1; a < n - 2; a++) {
+    for (b = a + 1; b < n - 1; b++) {
+      let cSquared = Math.pow(a, 2) + Math.pow(b, 2);
+
+      let c = Math.sqrt(cSquared);
+
+      if (a + b + c === n) {
+        product = a * b * c;
+
+        return product;
+      }
+    }
+  }
+}
+
+specialPythagoreanTriplet(1000);
