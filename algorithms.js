@@ -5721,4 +5721,28 @@ function specialPythagoreanTriplet(n) {
   }
 }
 
-specialPythagoreanTriplet(1000);
+// specialPythagoreanTriplet(1000);
+
+const studentsWithNamesAndTopNotes = (students) => {
+  let arr = [];
+
+  for (let i = 0; i < students.length; i++) {
+    if (students[i].notes.length === 0) {
+      arr.push({
+        name: students[i].name,
+        topNote: 0,
+      });
+    } else {
+      arr.push({
+        name: students[i].name,
+        topNote: students[i].notes.sort((a, b) => b - a)[0],
+      });
+    }
+  }
+  console.log(arr);
+};
+
+// studentsWithNamesAndTopNotes([
+//   { name: "John", notes: [3, 5, 4] },
+//   { name: "Josue", notes: [] },
+// ]);
