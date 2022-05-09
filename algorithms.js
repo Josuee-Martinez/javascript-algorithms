@@ -5746,3 +5746,29 @@ const studentsWithNamesAndTopNotes = (students) => {
 //   { name: "John", notes: [3, 5, 4] },
 //   { name: "Josue", notes: [] },
 // ]);
+
+function largeSum(arr) {
+  let ten = 10;
+  let sumOfArr = 0;
+  let sumOfFirstTen = "";
+
+  for (let i = 0; i < arr.length; i++) {
+    sumOfArr += parseInt(arr[i]);
+  }
+
+  sumOfArr = BigInt(sumOfArr).toString();
+
+  for (let i = 0; i < ten; i++) {
+    sumOfFirstTen += sumOfArr[i];
+  }
+  return parseInt(sumOfFirstTen);
+}
+
+// Only change code above this line
+
+const testNums = [
+  "37107287533902102798797998220837590246510135740250",
+  "46376937677490009712648124896970078050417018260538",
+];
+
+largeSum(testNums);
